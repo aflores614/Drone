@@ -162,6 +162,7 @@ if master:
         arm_drone(master)     
         takeoff(master,0.4)
         Landing(master)
+        disarm_drone(master)
         print("Mission Complete")
 
     else:
