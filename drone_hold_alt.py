@@ -157,3 +157,4 @@ if master:
         print("Pre-arm check failed. Cannot arm or take off.")
 else:
         print("Can't connect to vehicle")
+#testing andres
