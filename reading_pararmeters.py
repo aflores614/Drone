@@ -13,10 +13,24 @@ def connect_to_vehicle():
         return None
 
 def read(master):
+    print ("Started")
+    master.mav.request_data_stream_send(
+        master.target_system,
+        master.target_component,
+        mavutil.mavlink.MAV_DATA_STREAM_POSITION,
+        1,
+        1)
     while True:
-        msg = master.recv_match(type = 'ATTITUDE' , blocking = True)
-        print(msg)
-
+        msg = master.recv_match(type = 'GLOBAL_POSITION_INT', blocking = True)
+        if msg is not None:
+            altitude_above_sea_level = msg.alt / 1000.0 
+            relative_altitude = msg.relative_alt/ 1000.0
+            print(f"Altitude (MSL): {altitude_above_sea_level:.2f} meters, Relative altitude: {relative_altitude:.2f} meters")
+        
+        else:
+            print("No message Received")
+       
+        
 master = connect_to_vehicle()
 
 if master:
