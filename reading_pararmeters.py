@@ -22,10 +22,9 @@ def read(master):
         1)
     while True:
         msg = master.recv_match(type = 'GLOBAL_POSITION_INT', blocking = True)
-        if msg is not None:
-            altitude_above_sea_level = msg.alt / 1000.0 
+        if msg is not None:            
             relative_altitude = msg.relative_alt/ 1000.0
-            print(f"Altitude (MSL): {altitude_above_sea_level:.2f} meters, Relative altitude: {relative_altitude:.2f} meters")
+            print(f"Altitude (MSL): Relative altitude: {relative_altitude:.2f} meters")
         
         else:
             print("No message Received")

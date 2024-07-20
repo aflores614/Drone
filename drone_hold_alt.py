@@ -82,14 +82,19 @@ def takeoff(master,altitude):
         altitude)
     print(f"Taking off to {altitude} meters")
 
-
+    master.mav.request_data_stream_send(
+        master.target_system,
+        master.target_component,
+        mavutil.mavlink.MAV_DATA_STREAM_POSITION,
+        1,
+        1)
    
     while True:
         msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
         if msg:
-            current_altitude = msg.relative_alt / 1000.0  # Altitude in meters
-            print(f"Current altitude: {current_altitude}")
-            if current_altitude >= altitude - 0.1:  # Allow a small margin                
+            relative_altitude = msg.relative_alt/ 1000.0  # Altitude in meters
+            print(f"Current altitude: {relative_altitude}")
+            if relative_altitude >= altitude - 0.1:  # Allow a small margin                
                 print(f"Reached target altitude of {altitude} meters")
                 break   
         time.sleep(1)
@@ -106,17 +111,23 @@ def Landing(master):
         master.target_component,
         mavutil.mavlink.MAV_CMD_NAV_LAND,
         0,0, 0, 0, 0, 0, 0,0)
-     while True:
+     
+     master.mav.request_data_stream_send(
+        master.target_system,
+        master.target_component,
+        mavutil.mavlink.MAV_DATA_STREAM_POSITION,
+        1,
+        1)
+     while True:        
         msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
         if msg:
-            current_altitude = msg.relative_alt / 1000.0  # Altitude in meters
-            print(f"Current altitude: {current_altitude}")
-            if current_altitude <= 0.1:  # Allow a small margin                
+            relative_altitude = msg.relative_alt/ 1000.0  # Altitude in meters
+            print(f"Current altitude: {relative_altitude}")
+            if relative_altitude < 0.1:  # Allow a small margin                
                 print("Drone has land ")
                 break   
-        time.sleep(1)
-
-
+        time.sleep(1)   
+        
 # Function to check pre-arm status
 def check_pre_arm(master):
     # Add specific checks here based on your setup
