@@ -72,7 +72,7 @@ def takeoff(master,altitude):
         print("Failed to set GUIDED mode. Check GPS signal, pre-arm checks, and parameters.")
         return
 
-    print(f"Taking off to {altitude} meters")
+    
     master.mav.command_long_send(
         master.target_system,
         master.target_component,
@@ -80,9 +80,9 @@ def takeoff(master,altitude):
         0,
         0, 0, 0, 0, 0, 0,
         altitude)
+    print(f"Taking off to {altitude} meters")
 
-    # Wait until the vehicle reaches the target altitude 
-    
+
    
     while True:
         msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
@@ -148,7 +148,7 @@ master = connect_to_vehicle()
 if master:
     # Perform pre-arm check
     if check_pre_arm(master):
-        arm_drone(master)
+        arm_drone(master)     
         takeoff(master,0.4)
         Landing(master)
         print("Mission Complete")
