@@ -17,11 +17,29 @@ def connect_to_vehicle():
 
 # Function to arm the drone
 def arm_drone(master):
-    print("Arming drone...")
-    master.arducopter_arm()
-    print("Motor Arming")
-    master.motors_armed_wait()
-    print("Drone armed")
+    # Send a command to arm the drone
+    master.mav.command_long_send(
+        master.target_system,                
+        master.target_component,             
+        mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,  
+        0,                                  
+        1,                                   # param1 (1 to arm, 0 to disarm)
+        0, 0, 0, 0, 0, 0                     
+    )
+
+    print("Drone Arm")
+
+def disarm_drone(master):
+        master.mav.command_long_send(
+        master.target_system,                
+        master.target_component,             
+        mavutil.mavlink.MAV_CMD_COMPONENT_ARM_DISARM,  
+        0,                                   
+        0,                                   # param1 (0 to disarm, 1 to arm)
+        0, 0, 0, 0, 0, 0                     
+    )
+        print("Disatming Drone")
+
 
 # Function to change the mode
 def set_mode(master,mode):
@@ -49,6 +67,7 @@ def set_mode(master,mode):
 
 # Function to take off
 def takeoff(master,altitude):
+    
     if not set_mode(master,'GUIDED'):
         print("Failed to set GUIDED mode. Check GPS signal, pre-arm checks, and parameters.")
         return
@@ -62,16 +81,41 @@ def takeoff(master,altitude):
         0, 0, 0, 0, 0, 0,
         altitude)
 
-    # Wait until the vehicle reaches the target altitude
+    # Wait until the vehicle reaches the target altitude 
+    
+   
     while True:
         msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
         if msg:
             current_altitude = msg.relative_alt / 1000.0  # Altitude in meters
             print(f"Current altitude: {current_altitude}")
-            if current_altitude >= altitude - 0.1:  # Allow a small margin
+            if current_altitude >= altitude - 0.1:  # Allow a small margin                
                 print(f"Reached target altitude of {altitude} meters")
-                break
+                break   
         time.sleep(1)
+ 
+#Function to land 
+def Landing(master):
+     if not set_mode(master,'LAND'):
+        print("Failed to set LAND mode. Check GPS signal, pre-arm checks, and parameters.")
+        return
+     print("Landing Start")
+     
+     master.mav.command_long_send(
+        master.target_system,
+        master.target_component,
+        mavutil.mavlink.MAV_CMD_NAV_LAND,
+        0,0, 0, 0, 0, 0, 0,0)
+     while True:
+        msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
+        if msg:
+            current_altitude = msg.relative_alt / 1000.0  # Altitude in meters
+            print(f"Current altitude: {current_altitude}")
+            if current_altitude <= 0.1:  # Allow a small margin                
+                print("Drone has land ")
+                break   
+        time.sleep(1)
+
 
 # Function to check pre-arm status
 def check_pre_arm(master):
@@ -106,6 +150,9 @@ if master:
     if check_pre_arm(master):
         arm_drone(master)
         takeoff(master,0.4)
+        Landing(master)
+        print("Mission Complete")
+
     else:
         print("Pre-arm check failed. Cannot arm or take off.")
 else:
