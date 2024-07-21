@@ -66,7 +66,7 @@ def set_mode(master,mode):
     return True
 
 # Function to take off
-def takeoff(master,altitude):
+def takeoff(master,altitude,hold_time):
     
     if not set_mode(master,'GUIDED'):
         print("Failed to set GUIDED mode. Check GPS signal, pre-arm checks, and parameters.")
@@ -88,7 +88,8 @@ def takeoff(master,altitude):
         mavutil.mavlink.MAV_DATA_STREAM_POSITION,
         1,
         1)
-   
+    start_time = time.time()
+    timeout = 10
     while True:
         msg = master.recv_match(type='GLOBAL_POSITION_INT', blocking=True)
         if msg:
@@ -96,11 +97,18 @@ def takeoff(master,altitude):
             print(f"Current altitude: {relative_altitude}")
             if relative_altitude >= altitude - 0.1:  # Allow a small margin                
                 print(f"Reached target altitude of {altitude} meters")
-                break   
+                break
+            if time.time() - start_time > timeout:
+                print("Timeout reached. Unable to reach target altitude.")
+                return   
         time.sleep(1)
+
+    print("Holding Altitude")
+    time.sleep(hold_time)
+    print("Hold time complete")
  
 #Function to land 
-def Landing(master):
+def land(master):
      if not set_mode(master,'LAND'):
         print("Failed to set LAND mode. Check GPS signal, pre-arm checks, and parameters.")
         return
@@ -160,8 +168,8 @@ if master:
     # Perform pre-arm check
     if check_pre_arm(master):
         arm_drone(master)     
-        takeoff(master,0.4)
-        Landing(master)
+        takeoff(master,0.4,10)
+        land(master)
         disarm_drone(master)
         print("Mission Complete")
 
@@ -169,4 +177,3 @@ if master:
         print("Pre-arm check failed. Cannot arm or take off.")
 else:
         print("Can't connect to vehicle")
-#testing andres
