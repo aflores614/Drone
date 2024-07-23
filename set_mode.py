@@ -12,7 +12,7 @@ def set_mode(master,mode):
     # Confirm the mode change
     ack = False
     while not ack:
-        msg = master.recv_match(type='ATTITUDE', blocking = True)
+        msg = master.recv_match(type='COMMAND_ACK', blocking = True,timeout = 5)
         if msg and msg.command == mavutil.mavlink.MAV_CMD_DO_SET_MODE:
             if msg.result == mavutil.mavlink.MAV_RESULT_ACCEPTED:
                 print(f"Mode {mode} set successfully")
