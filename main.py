@@ -1,11 +1,11 @@
 from pymavlink import mavutil
 import time
-import connect_to_vehicle
-import arm_drone
-import disarm_drone
-import set_mode 
-import land
-import check_pre_arm
+from connect_to_vehicle import connect_to_vehicle
+from arm_drone import arm_drone
+from disarm_drone import disarm_drone
+from ser_mode import set_mode 
+from land import land
+from check_pre_arm import check_pre_arm
 
 # Connect to the vehicle on the specified serial port and baud rate
 # def connect_to_vehicle():
