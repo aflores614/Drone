@@ -22,6 +22,7 @@ def takeoff(master,altitude,hold_time):
         0,
         0, 0, 0, 0, 0, 0,
         altitude)
+    
     print(f"Taking off to {altitude} meters")
 
     master.mav.request_data_stream_send(

@@ -1,4 +1,6 @@
 from pymavlink import mavutil
+from set_mode import set_mode 
+import time
 #Function to land 
 def land(master):
      if not set_mode(master,'LAND'):

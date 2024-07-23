@@ -1,4 +1,5 @@
 from pymavlink import mavutil
+import time
 # Function to change the mode
 def set_mode(master,mode):
     if mode not in master.mode_mapping():
