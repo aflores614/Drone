@@ -1,7 +1,7 @@
 from pymavlink import mavutil
 import time
 
-def get_home_location(master):    
+def get_location(master):    
     master.mav.command_long_send(
             master.target_system,
             master.target_component,
@@ -9,7 +9,7 @@ def get_home_location(master):
             0,
             mavutil.mavlink.MAVLINK_MSG_ID_GPS_RAW_INT, 1000000,
             0,0,0,0,0,0
-            )
+    )
     while True:
         
         msg = master.recv_match(type = 'GPS_RAW_INT', blocking = True)              
@@ -17,10 +17,8 @@ def get_home_location(master):
             lat = msg.lat/1e7
             lon = msg.lon/1e7
             alt = msg.alt/1e3
-            print("Got Location")
-                   
-            print("Home postion is set")
-            #return lat, lon, alt 
+            print("Got Location")                
+            return lat, lon, alt 
             break
         else:
              print("Waiting ...")
