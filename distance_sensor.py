@@ -35,22 +35,8 @@ def distance():
     TimeElapsed = StopTime - StartTime
     
     # multiply with the sonic speed (34300 cm/s)
-    # and divide by 2, because there and back
-    distance = (TimeElapsed * 34300) / 2
+    # and divide by 2 then 100 to get meter
+    distance = ((TimeElapsed * 34300) / 2) / 100
  
-    return distance / 100
+    return distance 
  
-if __name__ == '__main__':
-    try:
-        while True:
-            dist = distance()
-            print ("Measured Distance = %.1f m" % dist)
-            time.sleep(1)
- 
-        # Reset by pressing CTRL + C
-    except KeyboardInterrupt:
-        print("Measurement stopped by User")
-    finally:
-        GPIO.cleanup()
-        print("GPIO clean up")
-        GPIO.cleanup()
