@@ -2,7 +2,7 @@ from pymavlink import mavutil
 from get_location import get_location
 import math
 def fly_forward(master, distance):
-    lat,lon, alt = get_location() 
+    lat,lon, alt = get_location(master) 
     Earth_R = 6378137.0
 
     offset_lat = distance / Earth_R
@@ -12,7 +12,7 @@ def fly_forward(master, distance):
     New_lon = lon + (offset_lon * 180 / math.pi)
 
     print(f"Latitude: {lat}, Longitude: {lon}, Altitude: {alt}")
-    print(f"New Latitude: {New_lat * 1e7}, Longitude: {New_lon * 1e7}, Altitude: {alt}")
+    print(f"New Latitude: {New_lat}, New Longitude: {New_lon }, Altitude: {alt}")
     print("It's safe to continue (y/n)")
     safe = input().strip().lower()
 

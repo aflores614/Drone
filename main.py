@@ -65,7 +65,7 @@ if master:
         print(Home_lat, Home_lon, Home_alt)
         arm_drone(master)      
         takeoff(master,1.5,10) 
-        fly_forward(master, 1) 
+        fly_forward(master, 2) 
         #return_home(master)
         land(master)     
         disarm_drone(master)
