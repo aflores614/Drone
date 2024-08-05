@@ -11,3 +11,5 @@ def connect_to_vehicle():
     except Exception as e:
         print(f"Failed to connect: {e}")
         return None
+
+

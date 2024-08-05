@@ -3,7 +3,7 @@ from pymavlink import mavutil
 def check_pre_arm(master):
     # Add specific checks here based on your setup
     print("Checking pre-arm status...")
-    # For example, check GPS lock
+    
     gps_lock = False
     while not gps_lock:
         print("Waiting ")
