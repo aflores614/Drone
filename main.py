@@ -36,7 +36,7 @@ if master:
                 while True:
                     dist = distance()
                     print ("Measured Distance = %.1f m" % dist)
-                    if( dist < 3):
+                    if( dist > 3):
                         print("Safe distance")
                     else:    
                         print("Object too close")
