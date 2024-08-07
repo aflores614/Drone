@@ -37,6 +37,31 @@ def distance():
     # multiply with the sonic speed (34300 cm/s)
     # and divide by 2 then 100 to get meter
     distance = ((TimeElapsed * 34300) / 2) / 100
+    
+    if distance > 4.5 or distance < 0.02:
+        return 4.5
  
     return distance 
  
+def avg_distance(num_samples = 5):
+    distances = []
+    for _ in range(num_samples):
+        dist = distance()
+        if dist != -1:
+            distances.append(dist)
+        time.sleep(0.1)
+    if len(distances) == 0:
+         return -1
+    return sum(distances)/ len(distances)
+ 
+if __name__ == "__main__":
+    while True:
+        dist = avg_distance()       
+        if( dist == -1):
+            print("Invaid Reading")
+        elif ( dist == 4.5):
+            print("Obstacle is outof range")         
+        else:    
+            print("Measured Distance = %.2f m" % dist)
+           
+                    

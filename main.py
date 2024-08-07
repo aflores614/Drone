@@ -12,7 +12,7 @@ from return_home import return_home
 from land import land
 from fly_forward import fly_forward
 from check_pre_arm import check_pre_arm
-from distance_sensor import distance
+from distance_sensor import avg_distance
 from set_movment import fly_movment
 
 
@@ -35,21 +35,21 @@ if master:
         if True:
             try:
                 while True:
-                    dist = distance()
+                    dist = avg_distance()
                     print ("Measured Distance = %.1f m" % dist)
-                    if( dist > 5):
-                        print("Safe distance")
+                    if( dist < 1):
+                        print("Object too close")                        
+                    elif( dist > 1 or dist == 4.5):
+                        print("Safe")
                         break
-                    else:    
-                        print("Object too close")
-                        land(master)
-                        break
+                
             except KeyboardInterrupt: # Reset by pressing CTRL + C
                 print("Measurement stopped by User")
 
         target_distance = 2
         current_distance = 0
-        velocity_x = 0.5
+        velocity_x = 0.5 #forward at 0.5 m/s
+        neg_veloxity_x = -velocity_x #reverse at 0.5 m/s
         check_interval = 0.1
         count = 0
 
@@ -57,13 +57,15 @@ if master:
             try:
                 while current_distance < target_distance:
                     dist = distance()
-                    if( dist > 4): 
+                    if( dist > 1 or dist == 4.5): 
                         fly_movment(master, velocity_x, 0, 0) 
+                    elif( dist == -1):
+                        break
                     else: 
-                        fly_movment( master, 0, 0 ,0)                        
-                        print("Obstacle detected")
+                        fly_movment( master, neg_veloxity_x , 0 ,0)                        
+                        print("Obstacle detected")              
                         count += 1 
-                        if (count == 10 ): # obstacle doesn't move for 10 secounds
+                        if (count == 50 ): # obstacle doesn't move for 5 secounds
                             break
                     time.sleep(check_interval)
                     current_distance += velocity_x * check_interval
