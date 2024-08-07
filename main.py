@@ -13,6 +13,7 @@ from land import land
 from fly_forward import fly_forward
 from check_pre_arm import check_pre_arm
 from distance_sensor import distance
+from set_movment import fly_movment
 
 
 master = connect_to_vehicle()
@@ -30,22 +31,47 @@ if master:
             print("Drone is not armed.")      
             sys.exit()
         time.sleep(5)
-        takeoff(master,1.5,5) 
+        takeoff(master,1,5) 
         if True:
             try:
                 while True:
                     dist = distance()
                     print ("Measured Distance = %.1f m" % dist)
-                    if( dist > 3):
+                    if( dist > 5):
                         print("Safe distance")
+                        break
                     else:    
                         print("Object too close")
+                        land(master)
                         break
             except KeyboardInterrupt: # Reset by pressing CTRL + C
                 print("Measurement stopped by User")
 
-        #fly_forward(master, 2) 
+        target_distance = 2
+        current_distance = 0
+        velocity_x = 0.5
+        check_interval = 0.1
+        count = 0
+
+        if True:
+            try:
+                while current_distance < target_distance:
+                    dist = distance()
+                    if( dist > 4): 
+                        fly_movment(master, velocity_x, 0, 0) 
+                    else: 
+                        fly_movment( master, 0, 0 ,0)                        
+                        print("Obstacle detected")
+                        count += 1 
+                        if (count == 10 ): # obstacle doesn't move for 10 secounds
+                            break
+                    time.sleep(check_interval)
+                    current_distance += velocity_x * check_interval
+                        
+            except KeyboardInterrupt:
+                    print("Measurement stopped by User")
         #return_home(master)
+
         land(master)     
         disarm_drone(master)
         print("Mission Complete")
