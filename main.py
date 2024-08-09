@@ -34,7 +34,7 @@ if master:
             sys.exit()
         time.sleep(5)
         # take to a fix altitude  and hold for a fix time
-        takeoff(master,1,5) 
+        takeoff(master,1.3,2) 
         #scan for any obstacle before flying forward
         try:
             while True:
@@ -48,15 +48,17 @@ if master:
                 else: # not safe to continue
                      print(" not safe to fly abort mission")
                      land(master)
+                     
                      disarm_drone(master)
                      sys.exit()
                 
         except KeyboardInterrupt: # Reset by pressing CTRL + C
                 print("Measurement stopped by User")
 
-        target_distance = 2 # distance in meters
+        target_distance = 0.75 # distance in meters
         current_distance = 0 # The distance the drone has traveled so far
-        velocity_x = 0.5 # forward speed at 0.5 m/s
+        velocity_x = -0.5 # forward speed at 0.5 m/s
+        
         neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
         check_interval = 0.1 # The time interval between each check of the distance
         count = 0 # Counter to track how long the obstacle has been detected. 
@@ -68,11 +70,11 @@ if master:
                 if( dist > 1 or dist == 4.5): 
                     fly_movment(master, velocity_x, 0, 0) 
                     time.sleep(check_interval)
-                    current_distance += velocity_x * check_interval
+                    current_distance -= velocity_x * check_interval
                     print("Distance travel: ", current_distance)
                     count = 0
                 
-                elif( dist < 1):
+                elif( dist < 2):
                     fly_movment( master, neg_velocity_x , 0 ,0)                        
                     print("Obstacle detected")                     
                     time.sleep(check_interval)
