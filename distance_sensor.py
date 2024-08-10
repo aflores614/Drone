@@ -2,17 +2,17 @@ import RPi.GPIO as GPIO
 import time
  
 #set GPIO Pins
-GPIO_TRIGGER_N = 23
-GPIO_ECHO_N = 24
+GPIO_TRIGGER_E = 23
+GPIO_ECHO_E = 24
 
-GPIO_TRIGGER_S = 17
-GPIO_ECHO_S = 27
+GPIO_TRIGGER_W = 17
+GPIO_ECHO_W = 27
 
-GPIO_TRIGGER_E = 5
-GPIO_ECHO_E = 6
+GPIO_TRIGGER_S = 5
+GPIO_ECHO_S = 6
 
-GPIO_TRIGGER_W = 13
-GPIO_ECHO_W = 26
+GPIO_TRIGGER_N = 13
+GPIO_ECHO_N = 26
 
 #GPIO Mode (BOARD / BCM) 
 GPIO.setmode(GPIO.BCM)
@@ -69,23 +69,23 @@ def avg_distance(num_samples, GPIO_TRIGGER, GPIO_ECHO):
         dist = distance(GPIO_TRIGGER, GPIO_ECHO)
         if dist != -1:
             distances.append(dist)
-        time.sleep(0.1)
+        time.sleep(0.05)
     if len(distances) == 0:
          return -1
     return sum(distances)/ len(distances)
  
 if __name__ == "__main__":
     while True:
-        dist_N = avg_distance(5,GPIO_TRIGGER_N, GPIO_ECHO_N ) 
-        dist_S = avg_distance(5,GPIO_TRIGGER_S, GPIO_ECHO_S )   
-        dist_E = avg_distance(5,GPIO_TRIGGER_E, GPIO_ECHO_E )   
-        dist_W = avg_distance(5,GPIO_TRIGGER_W, GPIO_ECHO_W)      
+        dist_E = avg_distance(3,GPIO_TRIGGER_E, GPIO_ECHO_E ) 
+        dist_W = avg_distance(3,GPIO_TRIGGER_W, GPIO_ECHO_W )   
+        dist_S = avg_distance(3,GPIO_TRIGGER_S, GPIO_ECHO_S)   
+        dist_N = avg_distance(3,GPIO_TRIGGER_N, GPIO_ECHO_N)      
 
 
-        print("Measured North Distance = %.2f m" % dist_N)
-        print("Measured South Distance = %.2f m" % dist_S)
         print("Measured East Distance = %.2f m" % dist_E)
         print("Measured West Distance = %.2f m" % dist_W)
+        print("Measured South Distance = %.2f m" % dist_S)
+        print("Measured North Distance = %.2f m" % dist_N)
 
 
                     
