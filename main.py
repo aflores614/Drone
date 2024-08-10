@@ -12,7 +12,7 @@ from return_home import return_home
 from land import land
 from fly_forward import fly_forward
 from check_pre_arm import check_pre_arm
-from distance_sensor import avg_distance
+from distance_sensor import get_distance
 from set_movment import fly_movment
 
 
@@ -38,11 +38,11 @@ if master:
         #scan for any obstacle before flying forward
         try:
             while True:
-                dist = avg_distance()
-                print ("Measured Distance = %.1f m" % dist)
-                if( dist < 1):
+                dist_front, dist_back, dist_right, dist_left = get_distance()
+                print ("Measured front Distance = %.1f m" % dist_front)
+                if( dist_front < 1):
                     print("Object too close")                        
-                elif( dist > 1 or dist == 4.5):
+                elif( dist_front > 1 or dist_front == 4.5):
                     print("Safe")
                     break
                 else: # not safe to continue
@@ -55,7 +55,7 @@ if master:
         except KeyboardInterrupt: # Reset by pressing CTRL + C
                 print("Measurement stopped by User")
 
-        target_distance = 1.0 # distance in meters
+        target_distance = 1.5 # distance in meters
         current_distance = 0 # The distance the drone has traveled so far
         velocity_x = 0.5 # forward speed at 0.5 m/s
         
@@ -66,15 +66,17 @@ if master:
        
         try:
             while current_distance < target_distance:
-                dist = avg_distance()
-                if( dist > 1 or dist == 4.5): 
+
+                dist_front, dist_back, dist_right, dist_left = get_distance()
+
+                if( dist_front > 1 or dist_front == 4.5): 
                     fly_movment(master, velocity_x, 0, 0) 
                     time.sleep(check_interval)
                     current_distance += velocity_x * check_interval
                     print("Distance travel: ", current_distance)
                     count = 0
                 
-                elif( dist < 2):
+                elif( dist_front < 2 and dist_back > 2):
                     fly_movment( master, neg_velocity_x , 0 ,0)                        
                     print("Obstacle detected")                     
                     time.sleep(check_interval)

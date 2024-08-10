@@ -73,6 +73,14 @@ def avg_distance(num_samples, GPIO_TRIGGER, GPIO_ECHO):
     if len(distances) == 0:
          return -1
     return sum(distances)/ len(distances)
+
+def get_distance():
+    dist_E = avg_distance(3,GPIO_TRIGGER_E, GPIO_ECHO_E ) 
+    dist_W = avg_distance(3,GPIO_TRIGGER_W, GPIO_ECHO_W )   
+    dist_S = avg_distance(3,GPIO_TRIGGER_S, GPIO_ECHO_S)   
+    dist_N = avg_distance(3,GPIO_TRIGGER_N, GPIO_ECHO_N)   
+
+    return  dist_N ,dist_S, dist_E, dist_W
  
 if __name__ == "__main__":
     while True:
