@@ -55,9 +55,9 @@ if master:
         except KeyboardInterrupt: # Reset by pressing CTRL + C
                 print("Measurement stopped by User")
 
-        target_distance = 0.75 # distance in meters
+        target_distance = 1.0 # distance in meters
         current_distance = 0 # The distance the drone has traveled so far
-        velocity_x = -0.5 # forward speed at 0.5 m/s
+        velocity_x = 0.5 # forward speed at 0.5 m/s
         
         neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
         check_interval = 0.1 # The time interval between each check of the distance
@@ -70,7 +70,7 @@ if master:
                 if( dist > 1 or dist == 4.5): 
                     fly_movment(master, velocity_x, 0, 0) 
                     time.sleep(check_interval)
-                    current_distance -= velocity_x * check_interval
+                    current_distance += velocity_x * check_interval
                     print("Distance travel: ", current_distance)
                     count = 0
                 
@@ -78,7 +78,7 @@ if master:
                     fly_movment( master, neg_velocity_x , 0 ,0)                        
                     print("Obstacle detected")                     
                     time.sleep(check_interval)
-                    current_distance += neg_velocity_x * check_interval
+                    current_distance -= neg_velocity_x * check_interval
                     print("Distance travel: ", current_distance)             
                     count += 1 
                     if (count == 50 ): # obstacle doesn't move for 5 secounds

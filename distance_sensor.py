@@ -2,15 +2,35 @@ import RPi.GPIO as GPIO
 import time
  
 #set GPIO Pins
-GPIO_TRIGGER = 23
-GPIO_ECHO = 24
+GPIO_TRIGGER_N = 23
+GPIO_ECHO_N = 24
+
+GPIO_TRIGGER_S = 17
+GPIO_ECHO_S = 27
+
+GPIO_TRIGGER_E = 5
+GPIO_ECHO_E = 6
+
+GPIO_TRIGGER_W = 13
+GPIO_ECHO_W = 26
+
 #GPIO Mode (BOARD / BCM) 
 GPIO.setmode(GPIO.BCM)
+
 #set GPIO direction (IN / OUT)
-GPIO.setup(GPIO_TRIGGER, GPIO.OUT)
-GPIO.setup(GPIO_ECHO, GPIO.IN)
+GPIO.setup(GPIO_TRIGGER_N, GPIO.OUT)
+GPIO.setup(GPIO_ECHO_N, GPIO.IN)
+
+GPIO.setup(GPIO_TRIGGER_S, GPIO.OUT)
+GPIO.setup(GPIO_ECHO_S, GPIO.IN)
+
+GPIO.setup(GPIO_TRIGGER_E, GPIO.OUT)
+GPIO.setup(GPIO_ECHO_E, GPIO.IN)
+
+GPIO.setup(GPIO_TRIGGER_W, GPIO.OUT)
+GPIO.setup(GPIO_ECHO_W, GPIO.IN)
  
-def distance():
+def distance(GPIO_TRIGGER, GPIO_ECHO):
 
    
     GPIO.output(GPIO_TRIGGER, True)
@@ -43,10 +63,10 @@ def distance():
  
     return distance 
  
-def avg_distance(num_samples = 5):
+def avg_distance(num_samples, GPIO_TRIGGER, GPIO_ECHO):
     distances = []
     for _ in range(num_samples):
-        dist = distance()
+        dist = distance(GPIO_TRIGGER, GPIO_ECHO)
         if dist != -1:
             distances.append(dist)
         time.sleep(0.1)
@@ -56,12 +76,16 @@ def avg_distance(num_samples = 5):
  
 if __name__ == "__main__":
     while True:
-        dist = avg_distance()       
-        if( dist == -1):
-            print("Invaid Reading")
-        elif ( dist == 4.5):
-            print("Obstacle is outof range")         
-        else:    
-            print("Measured Distance = %.2f m" % dist)
-           
+        dist_N = avg_distance(5,GPIO_TRIGGER_N, GPIO_ECHO_N ) 
+        dist_S = avg_distance(5,GPIO_TRIGGER_S, GPIO_ECHO_S )   
+        dist_E = avg_distance(5,GPIO_TRIGGER_E, GPIO_ECHO_E )   
+        dist_W = avg_distance(5,GPIO_TRIGGER_W, GPIO_ECHO_W)      
+
+
+        print("Measured North Distance = %.2f m" % dist_N)
+        print("Measured South Distance = %.2f m" % dist_S)
+        print("Measured East Distance = %.2f m" % dist_E)
+        print("Measured West Distance = %.2f m" % dist_W)
+
+
                     

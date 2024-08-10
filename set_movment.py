@@ -8,8 +8,8 @@ def fly_movment(master, vx, vy, vz):
     # vz value for down negative value for up 
     master.mav.send(mavutil.mavlink.MAVLink_set_position_target_local_ned_message(10, master.target_system,  
                                                                                  master.target_component, 
-                                                                                 mavutil.mavlink.MAV_FRAME_LOCAL_NED,
-                                                                                 int(0b110111000111 ) , 
+                                                                                 mavutil.MAV_FRAME_BODY_OFFSET_NED,
+                                                                                 int(0b110111000111 ), 
                                                                                  0, 0, 0, 
                                                                                  vx, vy , vz, 
                                                                                  0, 0, 0, 
