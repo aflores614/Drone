@@ -55,7 +55,7 @@ if master:
         except KeyboardInterrupt: # Reset by pressing CTRL + C
                 print("Measurement stopped by User")
 
-        target_distance = 1.5 # distance in meters
+        target_distance = 1 # distance in meters
         current_distance = 0 # The distance the drone has traveled so far
         velocity_x = 0.5 # forward speed at 0.5 m/s
         
@@ -68,7 +68,7 @@ if master:
             while current_distance < target_distance:
 
                 dist_front, dist_back, dist_right, dist_left = get_distance()
-
+                print("Distance front: ",dist_front)
                 if( dist_front > 1 or dist_front == 4.5): 
                     fly_movment(master, velocity_x, 0, 0) 
                     time.sleep(check_interval)
