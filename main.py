@@ -89,12 +89,11 @@ if master:
                 
         try:
             print("Testing Movement")
-
-            print("Flying Forward")
-            fly_movment(master,0.5, 0, 0) 
             current_lat, current_lon, current_alt = get_location(master)
             print("It had travel", distance_travel(Home_lat, current_lat, Home_lon, current_lon),"meters")
 
+            print("Flying Forward")
+            fly_movment(master,0.5, 0, 0) 
             print("Flying Backward")
             fly_movment(master,-0.5, 0, 0)
             print("Flying Right")
@@ -158,7 +157,7 @@ if master:
             logging.warning("Measurement interrupted by user")
             print("Measurement stopped by User")
             print("Not safe abort mission")
-            print("Safty Test 1 fail")
+            print("Mission fail")
                     
         
         #return_home(master)
