@@ -8,3 +8,9 @@ def abort_mission(master):
     land(master)     
     disarm_drone(master)
     sys.exit()
+    
+if __name__ == "__main__":
+    master = connect_to_vehicle
+    abort_mission(master)
+    
+
