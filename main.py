@@ -18,10 +18,11 @@ from set_movment import fly_movment, fly_to_postion
 from travel_distance import distance_travel
 from abort_mission import abort_mission
 
-#logging.basicConfig(filename='drone_log.log', 
- #                   level=logging.INFO,
-  #                  format='%(asctime)s - %(levelname)s - %(message)s',
-   #                 filemode='w')  
+logging.basicConfig(filename='drone_log.log', 
+                        level=logging.INFO,
+                        format='%(asctime)s - %(levelname)s - %(message)s',
+                        filemode='w')  
+logging.info("Start")
 
 master = connect_to_vehicle()
 
@@ -74,44 +75,27 @@ if master:
             print("Safty Test 1 fail")
                 
                 
-                
-        try:
-            print("Safty Test 2")
-            current_lat, current_lon, current_alt = get_location(master)
-            distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
-            print("The distance from home is ", distance_travel_home,"meters")
-            #logging.info("The distance from home is ", distance_travel_home,"meters")
-            #fly_to_postion(master, Home_lat, Home_lon, Alt)
-        except KeyboardInterrupt: # Reset by pressing CTRL + C
-            abort_mission(master)
-            print("Not safe abort mission")
-            print("Safty Test 2 fail")
-                
         try:
             print("Testing Movement")
             current_lat, current_lon, current_alt = get_location(master)
-            print("It had travel", distance_travel(Home_lat, current_lat, Home_lon, current_lon),"meters")
-
+            distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
+            print("It had travel", distance_travel_home ,"meters")
+            #flying test commands
             print("Flying Forward")
-            fly_movment(master,0.5, 0, 0) 
-            time.sleep(1)
+            fly_movment(master, 0.5, 0, 0, 2) 
             print("Flying Backward")
-            fly_movment(master,-0.5, 0, 0)
-            time.sleep(1)
+            fly_movment(master,-0.5, 0,0,  2)         
             print("Flying Right")
-            fly_movment(master,0, 0.5, 0)
-            time.sleep(1)
+            fly_movment(master, 0, 0.5, 0, 2)        
             print("Flying Left")
-            fly_movment(master,0, -0.5, 0)
-            print("Flying up")
-            time.sleep(1)
-            fly_movment(master,0, 0, -0.5)
+            fly_movment(master, 0,-0.5, 0, 2)
+            print("Flying up")         
+            fly_movment(master,0, 0, -0.5, 2)
             print("Flying down")           
-            fly_movment(master,0, 0, 0.5)
-            time.sleep(1)
-            print("Flying up")
-            time.sleep(1)
-            fly_movment(master,0, 0, -0.5)
+            fly_movment(master, 0, 0, 0.5, 2)        
+            print("Flying up")          
+            fly_movment(master, 0, 0,-0.5, 2)
+
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
             ##logging.warning("Movement Test interrupted by user")
