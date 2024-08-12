@@ -18,10 +18,10 @@ from set_movment import fly_movment, fly_to_postion
 from travel_distance import distance_travel
 from abort_mission import abort_mission
 
-logging.basicConfig(filename='drone_log.log', 
-                    level=logging.INFO,
-                    format='%(asctime)s - %(levelname)s - %(message)s',
-                    filemode='w')  
+#logging.basicConfig(filename='drone_log.log', 
+ #                   level=logging.INFO,
+  #                  format='%(asctime)s - %(levelname)s - %(message)s',
+   #                 filemode='w')  
 
 master = connect_to_vehicle()
 
@@ -52,24 +52,24 @@ if master:
             print("Stafey Test 1")
             while True:
                 dist_front, dist_back, dist_right, dist_left = get_distance()
-                logging.info("Measured front Distance: %.1f m" % dist_front)
+                #logging.info("Measured front Distance: %.1f m" % dist_front)
                 print ("Measured front Distance = %.1f m" % dist_front)
                 if( dist_front <= Safe_Dist):
                     print("Object too close")
-                    logging.warning("Object too close")                        
+                  #  logging.warning("Object too close")                        
                 elif( dist_front > Safe_Dist ):
                     print("Safe")
-                    logging.info("Safe distance, proceeding")
+                   # logging.info("Safe distance, proceeding")
                     break
                 else: # not safe to continue
                      abort_mission(master)
                      print(" not safe to fly abort mission")
                      print("Safty Test 1 Fail")
-                     logging.error("Not safe to fly, aborting mission")
+                    # logging.error("Not safe to fly, aborting mission")
                      
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
-            logging.warning("Movement Test interrupted by user")
+            #logging.warning("Movement Test interrupted by user")
             print("Not safe abort mission")
             print("Safty Test 1 fail")
                 
@@ -80,8 +80,8 @@ if master:
             current_lat, current_lon, current_alt = get_location(master)
             distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
             print("The distance from home is ", distance_travel_home,"meters")
-            logging.info("The distance from home is ", distance_travel_home,"meters")
-            fly_to_postion(master, Home_lat, Home_lon, Alt)
+            #logging.info("The distance from home is ", distance_travel_home,"meters")
+            #fly_to_postion(master, Home_lat, Home_lon, Alt)
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
             print("Not safe abort mission")
@@ -94,19 +94,27 @@ if master:
 
             print("Flying Forward")
             fly_movment(master,0.5, 0, 0) 
+            time.sleep(1)
             print("Flying Backward")
             fly_movment(master,-0.5, 0, 0)
+            time.sleep(1)
             print("Flying Right")
             fly_movment(master,0, 0.5, 0)
+            time.sleep(1)
             print("Flying Left")
             fly_movment(master,0, -0.5, 0)
             print("Flying up")
+            time.sleep(1)
             fly_movment(master,0, 0, -0.5)
-            print("Flying down")
+            print("Flying down")           
             fly_movment(master,0, 0, 0.5)
+            time.sleep(1)
+            print("Flying up")
+            time.sleep(1)
+            fly_movment(master,0, 0, -0.5)
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
-            logging.warning("Movement Test interrupted by user")
+            ##logging.warning("Movement Test interrupted by user")
             print("Flying Test has be stopped by User")
             print("Movement Test  fail")
                 
@@ -133,7 +141,7 @@ if master:
                     time.sleep(check_interval)
                     current_distance += velocity_x * check_interval
                     print("Distance travel: ", current_distance)
-                    logging.info("Distance traveled: %.2f meters" % current_distance)
+              #      logging.info("Distance traveled: %.2f meters" % current_distance)
                     count = 0
                 
                 elif( dist_front <= Safe_Dist ):
@@ -142,19 +150,19 @@ if master:
                     time.sleep(check_interval)
                     current_distance -= neg_velocity_x * check_interval
                     print("Distance travel: ", current_distance) 
-                    logging.info("Distance traveled after obstacle: %.2f meters" % current_distance)            
+               #     logging.info("Distance traveled after obstacle: %.2f meters" % current_distance)            
                     count += 1 
                     if (count == 50 ): # obstacle doesn't move for 5 secounds
                         break
                 else:
                     abort_mission(master)
-                    logging.error("Invalid distance sensor reading, aborting mission")
+                #    logging.error("Invalid distance sensor reading, aborting mission")
                     print("Invalid Distance sensor read abort mission")
                     
                     
         except KeyboardInterrupt:
             abort_mission(master)
-            logging.warning("Measurement interrupted by user")
+            #logging.warning("Measurement interrupted by user")
             print("Measurement stopped by User")
             print("Not safe abort mission")
             print("Mission fail")
