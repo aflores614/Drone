@@ -81,20 +81,7 @@ if master:
             print("Testing Movement")
             current_lat, current_lon, current_alt = get_location(master)
             distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
-            print("It had travel", distance_travel_home ,"meters")
-            #flying test commands
-            #print("Flying Forward")
-            #fly_movment(master, 1, 0, 0, 2) 
-            #print("Flying Backward")
-            #fly_movment(master,-1, 0, 0,  2)         
-            #print("Flying Right")
-            #fly_movment(master, 0, 0.5, 0, 2)        
-            #print("Flying Left")
-            #fly_movment(master, 0,-0.5, 0, 2)
-            #print("Flying up")         
-            #fly_movment(master,0, 0, -1, 2)
-            #print("Flying down")           
-            #fly_movment(master, 0, 0, 0.5, 2)        
+            print("It had travel", distance_travel_home ,"meters")    
             
 
         except KeyboardInterrupt: # Reset by pressing CTRL + C
