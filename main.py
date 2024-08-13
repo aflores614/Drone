@@ -26,7 +26,7 @@ logging.info("Start")
 
 master = connect_to_vehicle()
 
-Alt = 1.3 # fix altitude
+Alt = 1.5 # fix altitude
 Safe_Dist = 1.5 # safe distance
 
 if master:
@@ -53,24 +53,26 @@ if master:
             print("Stafey Test 1")
             while True:
                 dist_front, dist_back, dist_right, dist_left = get_distance()
-                #logging.info("Measured front Distance: %.1f m" % dist_front)
+                logging.info("Measured front Distance: %.1f m" % dist_front)
                 print ("Measured front Distance = %.1f m" % dist_front)
                 if( dist_front <= Safe_Dist):
                     print("Object too close")
-                  #  logging.warning("Object too close")                        
+                    logging.warning("Object too close")                        
                 elif( dist_front > Safe_Dist ):
                     print("Safe")
-                   # logging.info("Safe distance, proceeding")
+                    logging.info("Safe distance, proceeding")
                     break
                 else: # not safe to continue
                      abort_mission(master)
                      print(" not safe to fly abort mission")
                      print("Safty Test 1 Fail")
-                    # logging.error("Not safe to fly, aborting mission")
+                     logging.error("Not safe to fly, aborting mission")
                      
         except KeyboardInterrupt: # Reset by pressing CTRL + C
-            abort_mission(master)
-            #logging.warning("Movement Test interrupted by user")
+            land(master)     
+            disarm_drone(master)
+            sys.exit()
+            logging.warning("Movement Test interrupted by user")
             print("Not safe abort mission")
             print("Safty Test 1 fail")
                 
@@ -81,24 +83,25 @@ if master:
             distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
             print("It had travel", distance_travel_home ,"meters")
             #flying test commands
-            print("Flying Forward")
-            fly_movment(master, 0.5, 0, 0, 2) 
-            print("Flying Backward")
-            fly_movment(master,-0.5, 0,0,  2)         
-            print("Flying Right")
-            fly_movment(master, 0, 0.5, 0, 2)        
-            print("Flying Left")
-            fly_movment(master, 0,-0.5, 0, 2)
-            print("Flying up")         
-            fly_movment(master,0, 0, -0.5, 2)
-            print("Flying down")           
-            fly_movment(master, 0, 0, 0.5, 2)        
-            print("Flying up")          
-            fly_movment(master, 0, 0,-0.5, 2)
+            #print("Flying Forward")
+            #fly_movment(master, 1, 0, 0, 2) 
+            #print("Flying Backward")
+            #fly_movment(master,-1, 0, 0,  2)         
+            #print("Flying Right")
+            #fly_movment(master, 0, 0.5, 0, 2)        
+            #print("Flying Left")
+            #fly_movment(master, 0,-0.5, 0, 2)
+            #print("Flying up")         
+            #fly_movment(master,0, 0, -1, 2)
+            #print("Flying down")           
+            #fly_movment(master, 0, 0, 0.5, 2)        
+            
 
         except KeyboardInterrupt: # Reset by pressing CTRL + C
-            abort_mission(master)
-            ##logging.warning("Movement Test interrupted by user")
+            land(master)     
+            disarm_drone(master)
+            sys.exit()
+            logging.warning("Movement Test interrupted by user")
             print("Flying Test has be stopped by User")
             print("Movement Test  fail")
                 
@@ -106,9 +109,9 @@ if master:
 
 
 
-        target_distance = 1 # distance in meters
+        target_distance = 1.15 # distance in meters
         current_distance = 0 # The distance the drone has traveled so far
-        velocity_x = 0.5 # forward speed at 0.5 m/s
+        velocity_x = 1 # forward speed at 0.5 m/s
         
         neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
         check_interval = 0.1 # The time interval between each check of the distance
@@ -121,20 +124,18 @@ if master:
                 dist_front, dist_back, dist_right, dist_left = get_distance()
                 print("Distance front: ",dist_front)
                 if( dist_front > Safe_Dist ): 
-                    fly_movment(master, velocity_x, 0, 0) 
-                    time.sleep(check_interval)
+                    fly_movment(master, velocity_x, 0, 0,check_interval) 
                     current_distance += velocity_x * check_interval
                     print("Distance travel: ", current_distance)
-              #      logging.info("Distance traveled: %.2f meters" % current_distance)
+                    logging.info("Distance traveled: %.2f meters" % current_distance)
                     count = 0
                 
                 elif( dist_front <= Safe_Dist ):
-                    fly_movment( master, neg_velocity_x , 0 , 0)                        
+                    fly_movment( master, neg_velocity_x , 0 , 0,check_interval)                        
                     print("Obstacle detected")                     
-                    time.sleep(check_interval)
-                    current_distance -= neg_velocity_x * check_interval
+                    current_distance += neg_velocity_x * check_interval
                     print("Distance travel: ", current_distance) 
-               #     logging.info("Distance traveled after obstacle: %.2f meters" % current_distance)            
+                    logging.info("Distance traveled after obstacle: %.2f meters" % current_distance)            
                     count += 1 
                     if (count == 50 ): # obstacle doesn't move for 5 secounds
                         break
@@ -144,9 +145,11 @@ if master:
                     print("Invalid Distance sensor read abort mission")
                     
                     
-        except KeyboardInterrupt:
-            abort_mission(master)
-            #logging.warning("Measurement interrupted by user")
+        except KeyboardInterrupt:            
+            land(master)     
+            disarm_drone(master)
+            sys.exit()
+            logging.warning("Measurement interrupted by user")
             print("Measurement stopped by User")
             print("Not safe abort mission")
             print("Mission fail")
