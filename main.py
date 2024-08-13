@@ -17,17 +17,20 @@ from distance_sensor import get_distance
 from set_movment import fly_movment, fly_to_postion
 from travel_distance import distance_travel
 from abort_mission import abort_mission
+from Safe_Test import saftey_test_1,  saftey_test_2
 
 logging.basicConfig(filename='drone_log.log', 
                         level=logging.INFO,
                         format='%(asctime)s - %(levelname)s - %(message)s',
                         filemode='w')  
 logging.info("Start")
+
 dist_front, dist_back, dist_right, dist_left = get_distance()
-print(dist_front, dist_back, dist_right, dist_left)
+print(dist_front, dist_back, dist_right, dist_left) #testing if the distance sensor are reading before arming the drone
+
 master = connect_to_vehicle()
 Alt = 1 # fix altitude
-Safe_Dist = 0.5 # safe distance
+Safe_Dist = 1.5 # safe distance
 
 if master:
     # Perform pre-arm check
@@ -43,7 +46,7 @@ if master:
             print("Drone is armed!")
         else:
             print("Drone is not armed.")      
-            #sys.exit()
+            sys.exit()
         # let arm for a fix time
         time.sleep(5)
         # take to a fix altitude and hold for a fix time
@@ -51,54 +54,22 @@ if master:
         
         #scan for any obstacle before flying forward
         try:
-            print("Stafey Test 1")
-            while True:
-                dist_front, dist_back, dist_right, dist_left = get_distance()
-                logging.info("Measured front Distance: %.1f m" % dist_front)
-                print ("Measured front Distance = %.1f m" % dist_front)
-                if( dist_front <= Safe_Dist):
-                    print("Object too close")
-                    logging.warning("Object too close")                        
-                elif( dist_front > Safe_Dist ):
-                    print("Safe")
-                    logging.info("Safe distance, proceeding")
-                    break
-                else: # not safe to continue
-                     abort_mission(master)
-                     print(" not safe to fly abort mission")
-                     print("Safty Test 1 Fail")
-                     logging.error("Not safe to fly, aborting mission")
-                     
+            saftey_test_1(master, Safe_Dist )                     
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
-            logging.warning("Movement Test interrupted by user")
+            logging.warning("Safty Test 1 fail")
             print("Not safe abort mission")
             print("Safty Test 1 fail")
                 
                 
         try:
-            print("Testing Movement")
-            current_lat, current_lon, current_alt = get_location(master)
-            print(current_lat, current_lon, current_alt)
-            logging.info("TAKE OFF Position: %f, %f, %f" % (current_lat, current_lon, current_alt))
-            distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
-            print("It had travel", distance_travel_home ,"meters")  
-            logging.info("It had traveled {} meters".format(distance_travel_home))
-            if( distance_travel_home < 2):
-                fly_to_postion(master, Home_lat, Home_lon, Alt)
-            else:
-                print("not safe to fight to home Take off")
-                logging.info("not safe to fight to home Take off")
+            saftey_test_2(master, Home_lat, Home_lon, Alt ) 
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
-            logging.warning("Movement Test interrupted by user")
+            logging.warning("Safty Test 2 fail")
             print("Flying Test has be stopped by User")
-            print("Movement Test  fail")
+            print("Safty Test 2 fail")
                 
-
-
-
-
         target_distance = 1.15 # distance in meters
         current_distance = 0 # The distance the drone has traveled so far
         velocity_x = 0.5 # forward speed at 0.5 m/s
