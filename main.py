@@ -23,11 +23,11 @@ logging.basicConfig(filename='drone_log.log',
                         format='%(asctime)s - %(levelname)s - %(message)s',
                         filemode='w')  
 logging.info("Start")
-
+dist_front, dist_back, dist_right, dist_left = get_distance()
+print(dist_front, dist_back, dist_right, dist_left)
 master = connect_to_vehicle()
-
-Alt = 1.5 # fix altitude
-Safe_Dist = 1.5 # safe distance
+Alt = 1 # fix altitude
+Safe_Dist = 0.5 # safe distance
 
 if master:
     # Perform pre-arm check
@@ -36,13 +36,14 @@ if master:
         Home_lat, Home_lon, Home_alt = get_location(master) 
         print("Home postion is set:")
         print(Home_lat, Home_lon, Home_alt) 
+        logging.info("Home Position: %f, %f, %f" % (Home_lat, Home_lon, Home_alt))
         # Arm drone 
         arm_drone(master)
         if is_armed(master):
             print("Drone is armed!")
         else:
             print("Drone is not armed.")      
-            sys.exit()
+            #sys.exit()
         # let arm for a fix time
         time.sleep(5)
         # take to a fix altitude and hold for a fix time
@@ -69,9 +70,7 @@ if master:
                      logging.error("Not safe to fly, aborting mission")
                      
         except KeyboardInterrupt: # Reset by pressing CTRL + C
-            land(master)     
-            disarm_drone(master)
-            sys.exit()
+            abort_mission(master)
             logging.warning("Movement Test interrupted by user")
             print("Not safe abort mission")
             print("Safty Test 1 fail")
@@ -80,14 +79,18 @@ if master:
         try:
             print("Testing Movement")
             current_lat, current_lon, current_alt = get_location(master)
+            print(current_lat, current_lon, current_alt)
+            logging.info("TAKE OFF Position: %f, %f, %f" % (current_lat, current_lon, current_alt))
             distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
-            print("It had travel", distance_travel_home ,"meters")    
-            
-
+            print("It had travel", distance_travel_home ,"meters")  
+            logging.info("It had traveled {} meters".format(distance_travel_home))
+            if( distance_travel_home < 2):
+                fly_to_postion(master, Home_lat, Home_lon, Alt)
+            else:
+                print("not safe to fight to home Take off")
+                logging.info("not safe to fight to home Take off")
         except KeyboardInterrupt: # Reset by pressing CTRL + C
-            land(master)     
-            disarm_drone(master)
-            sys.exit()
+            abort_mission(master)
             logging.warning("Movement Test interrupted by user")
             print("Flying Test has be stopped by User")
             print("Movement Test  fail")
@@ -98,7 +101,7 @@ if master:
 
         target_distance = 1.15 # distance in meters
         current_distance = 0 # The distance the drone has traveled so far
-        velocity_x = 1 # forward speed at 0.5 m/s
+        velocity_x = 0.5 # forward speed at 0.5 m/s
         
         neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
         check_interval = 0.1 # The time interval between each check of the distance
@@ -128,7 +131,7 @@ if master:
                         break
                 else:
                     abort_mission(master)
-                #    logging.error("Invalid distance sensor reading, aborting mission")
+                    logging.error("Invalid distance sensor reading, aborting mission")
                     print("Invalid Distance sensor read abort mission")
                     
                     

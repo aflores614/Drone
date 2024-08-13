@@ -32,7 +32,7 @@ def fly_to_postion(master, lat, lon, alt):
                                                                                  master.target_component, 
                                                                                  mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT_INT,
                                                                                  int(0b110111111000), 
-                                                                                 lat*1e7, lat* 1e7, alt, 
+                                                                                 int(lat*1e7), int(lon* 1e7), alt, 
                                                                                  0, 0 , 0, 
                                                                                  0, 0, 0, 
                                                                                  0, 0 

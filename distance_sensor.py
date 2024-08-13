@@ -71,7 +71,7 @@ def avg_distance(num_samples, GPIO_TRIGGER, GPIO_ECHO):
             distances.append(dist)
     if len(distances) == 0:
          return -1
-    return sum(distances)/ len(distances)
+    return round(sum(distances)/ len(distances), 2)
 
 def get_distance():
     num_sample = 5

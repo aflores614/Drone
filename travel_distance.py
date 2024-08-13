@@ -18,7 +18,7 @@ def distance_travel(lat_1, lat_2, lon_1, lon_2):
     r = 6371000 # radius of earth in meters
       
 
-    return(str(round(c * r, 2)))
+    return(round(c * r, 2))
 
  
 if __name__ == "__main__":
