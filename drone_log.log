@@ -1,30 +1,59 @@
-2024-08-12 21:27:17,848 - INFO - Start
-2024-08-12 21:27:18,583 - INFO - Home Position: 34.199758, -118.525603, 221.110000
-2024-08-12 21:27:35,386 - INFO - Measured front Distance: 1.0 m
-2024-08-12 21:27:35,387 - INFO - Safe distance, proceeding
-2024-08-12 21:27:35,389 - INFO - TAKE OFF Position: 34.199790, -118.525576, 223.060000
-2024-08-12 21:27:35,390 - INFO - It had traveled 4.38 meters
-2024-08-12 21:27:35,390 - INFO - not safe to fight to home Take off
-2024-08-12 21:27:36,218 - INFO - Distance traveled: 0.05 meters
-2024-08-12 21:27:36,518 - INFO - Distance traveled: 0.10 meters
-2024-08-12 21:27:37,154 - INFO - Distance traveled: 0.15 meters
-2024-08-12 21:27:37,981 - INFO - Distance traveled: 0.20 meters
-2024-08-12 21:27:38,809 - INFO - Distance traveled: 0.25 meters
-2024-08-12 21:27:39,501 - INFO - Distance traveled: 0.30 meters
-2024-08-12 21:27:39,962 - INFO - Distance traveled: 0.35 meters
-2024-08-12 21:27:40,809 - INFO - Distance traveled: 0.40 meters
-2024-08-12 21:27:41,521 - INFO - Distance traveled: 0.45 meters
-2024-08-12 21:27:41,864 - INFO - Distance traveled: 0.50 meters
-2024-08-12 21:27:42,531 - INFO - Distance traveled: 0.55 meters
-2024-08-12 21:27:43,195 - INFO - Distance traveled: 0.60 meters
-2024-08-12 21:27:43,817 - INFO - Distance traveled: 0.65 meters
-2024-08-12 21:27:44,438 - INFO - Distance traveled: 0.70 meters
-2024-08-12 21:27:45,058 - INFO - Distance traveled: 0.75 meters
-2024-08-12 21:27:45,548 - INFO - Distance traveled: 0.80 meters
-2024-08-12 21:27:46,101 - INFO - Distance traveled: 0.85 meters
-2024-08-12 21:27:46,714 - INFO - Distance traveled: 0.90 meters
-2024-08-12 21:27:47,334 - INFO - Distance traveled: 0.95 meters
-2024-08-12 21:27:47,638 - INFO - Distance traveled: 1.00 meters
-2024-08-12 21:27:48,210 - INFO - Distance traveled: 1.05 meters
-2024-08-12 21:27:48,777 - INFO - Distance traveled: 1.10 meters
-2024-08-12 21:27:49,346 - INFO - Distance traveled: 1.15 meters
+2024-08-13 20:39:47,946 - INFO - Start
+2024-08-13 20:39:49,420 - INFO - Home Position: 34.199942, -118.525594, 232.570000
+2024-08-13 20:40:06,872 - INFO - Measured front Distance: 4.5 m
+2024-08-13 20:40:06,873 - INFO - Safe distance, proceeding
+2024-08-13 20:40:08,617 - INFO - Distance traveled after obstacle: -0.05 meters
+2024-08-13 20:40:09,897 - INFO - Distance traveled after obstacle: -0.10 meters
+2024-08-13 20:40:11,541 - INFO - Distance traveled after obstacle: -0.15 meters
+2024-08-13 20:40:13,166 - INFO - Distance traveled: -0.10 meters
+2024-08-13 20:40:15,103 - INFO - Distance traveled after obstacle: -0.15 meters
+2024-08-13 20:40:16,726 - INFO - Distance traveled after obstacle: -0.20 meters
+2024-08-13 20:40:18,722 - INFO - Distance traveled: -0.15 meters
+2024-08-13 20:40:20,947 - INFO - Distance traveled: -0.10 meters
+2024-08-13 20:40:23,403 - INFO - Distance traveled: -0.05 meters
+2024-08-13 20:40:25,766 - INFO - Distance traveled: -0.00 meters
+2024-08-13 20:40:28,216 - INFO - Distance traveled: 0.05 meters
+2024-08-13 20:40:30,665 - INFO - Distance traveled: 0.10 meters
+2024-08-13 20:40:32,654 - INFO - Distance traveled: 0.15 meters
+2024-08-13 20:40:35,104 - INFO - Distance traveled: 0.20 meters
+2024-08-13 20:40:37,554 - INFO - Distance traveled: 0.25 meters
+2024-08-13 20:40:39,747 - INFO - Distance traveled: 0.30 meters
+2024-08-13 20:40:41,922 - INFO - Distance traveled: 0.35 meters
+2024-08-13 20:40:44,030 - INFO - Distance traveled: 0.40 meters
+2024-08-13 20:40:46,177 - INFO - Distance traveled: 0.45 meters
+2024-08-13 20:40:48,570 - INFO - Distance traveled: 0.50 meters
+2024-08-13 20:40:50,475 - INFO - Distance traveled: 0.55 meters
+2024-08-13 20:40:52,727 - INFO - Distance traveled: 0.60 meters
+2024-08-13 20:40:54,950 - INFO - Distance traveled: 0.65 meters
+2024-08-13 20:40:57,346 - INFO - Distance traveled: 0.70 meters
+2024-08-13 20:40:59,355 - INFO - Distance traveled: 0.75 meters
+2024-08-13 20:41:01,221 - INFO - Distance traveled: 0.80 meters
+2024-08-13 20:41:03,093 - INFO - Distance traveled: 0.85 meters
+2024-08-13 20:41:04,899 - INFO - Distance traveled: 0.90 meters
+2024-08-13 20:41:06,621 - INFO - Distance traveled: 0.95 meters
+2024-08-13 20:41:07,819 - INFO - Distance traveled: 1.00 meters
+2024-08-13 20:41:09,098 - INFO - Distance traveled: 1.05 meters
+2024-08-13 20:41:10,312 - INFO - Distance traveled: 1.10 meters
+2024-08-13 20:41:11,757 - INFO - Distance traveled after obstacle: 1.05 meters
+2024-08-13 20:41:12,948 - INFO - Distance traveled after obstacle: 1.00 meters
+2024-08-13 20:41:14,326 - INFO - Distance traveled after obstacle: 0.95 meters
+2024-08-13 20:41:15,498 - INFO - Distance traveled after obstacle: 0.90 meters
+2024-08-13 20:41:16,717 - INFO - Distance traveled after obstacle: 0.85 meters
+2024-08-13 20:41:17,858 - INFO - Distance traveled after obstacle: 0.80 meters
+2024-08-13 20:41:19,067 - INFO - Distance traveled after obstacle: 0.75 meters
+2024-08-13 20:41:20,328 - INFO - Distance traveled: 0.80 meters
+2024-08-13 20:41:21,583 - INFO - Distance traveled after obstacle: 0.75 meters
+2024-08-13 20:41:23,066 - INFO - Distance traveled: 0.80 meters
+2024-08-13 20:41:24,433 - INFO - Distance traveled: 0.85 meters
+2024-08-13 20:41:25,726 - INFO - Distance traveled after obstacle: 0.80 meters
+2024-08-13 20:41:26,896 - INFO - Distance traveled after obstacle: 0.75 meters
+2024-08-13 20:41:28,083 - INFO - Distance traveled after obstacle: 0.70 meters
+2024-08-13 20:41:29,238 - INFO - Distance traveled after obstacle: 0.65 meters
+2024-08-13 20:41:30,384 - INFO - Distance traveled after obstacle: 0.60 meters
+2024-08-13 20:41:31,556 - INFO - Distance traveled after obstacle: 0.55 meters
+2024-08-13 20:41:32,736 - INFO - Distance traveled after obstacle: 0.50 meters
+2024-08-13 20:41:33,916 - INFO - Distance traveled after obstacle: 0.45 meters
+2024-08-13 20:41:35,157 - INFO - Distance traveled after obstacle: 0.40 meters
+2024-08-13 20:41:36,341 - INFO - Distance traveled after obstacle: 0.35 meters
+2024-08-13 20:41:37,460 - INFO - Distance traveled after obstacle: 0.30 meters
+2024-08-13 20:41:38,618 -

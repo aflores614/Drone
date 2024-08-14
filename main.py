@@ -29,7 +29,7 @@ dist_front, dist_back, dist_right, dist_left = get_distance()
 print(dist_front, dist_back, dist_right, dist_left) #testing if the distance sensor are reading before arming the drone
 
 master = connect_to_vehicle()
-Alt = 1 # fix altitude
+Alt = 1.5 # fix altitude
 Safe_Dist = 1.5 # safe distance
 
 if master:
@@ -63,7 +63,8 @@ if master:
                 
                 
         try:
-            saftey_test_2(master, Home_lat, Home_lon, Alt ) 
+          #  saftey_test_2(master, Home_lat, Home_lon, Alt ) 
+            print("skip test 2")
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
             logging.warning("Safty Test 2 fail")
@@ -85,14 +86,14 @@ if master:
                 dist_front, dist_back, dist_right, dist_left = get_distance()
                 print("Distance front: ",dist_front)
                 if( dist_front > Safe_Dist ): 
-                    fly_movment(master, velocity_x, 0, 0,check_interval) 
+                    fly_movment(master, velocity_x, 0, 0,1) 
                     current_distance += velocity_x * check_interval
                     print("Distance travel: ", current_distance)
                     logging.info("Distance traveled: %.2f meters" % current_distance)
                     count = 0
                 
                 elif( dist_front <= Safe_Dist ):
-                    fly_movment( master, neg_velocity_x , 0 , 0,check_interval)                        
+                    fly_movment( master, neg_velocity_x , 0 , 0,1)                        
                     print("Obstacle detected")                     
                     current_distance += neg_velocity_x * check_interval
                     print("Distance travel: ", current_distance) 
