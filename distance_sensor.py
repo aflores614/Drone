@@ -80,8 +80,10 @@ def get_distance():
     dist_S = avg_distance(num_sample,GPIO_TRIGGER_S, GPIO_ECHO_S)   
     dist_N = avg_distance(num_sample,GPIO_TRIGGER_N, GPIO_ECHO_N)   
 
-    return  dist_N ,dist_S, dist_E , dist_W
- 
+    try:
+        return  dist_N ,dist_S, dist_E , dist_W
+    except Exception as e:
+        return None, None, None, None
 if __name__ == "__main__":
     while True:
         dist_N, dist_S, dist_E , dist_W= get_distance() 

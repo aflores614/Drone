@@ -18,6 +18,18 @@ from set_movment import fly_movment, fly_to_postion
 from travel_distance import distance_travel
 from abort_mission import abort_mission
 from Safe_Test import saftey_test_1,  saftey_test_2
+from Battery_Info import Battery_Volatage
+
+target_distance = 3 # distance in meters
+current_distance = 0 # The distance the drone has traveled so far
+velocity_x = 0.5 # forward speed at 0.5 m/s
+velocity_y = 0 # Right speed at 0.5 m/s
+velocity_z = 0 # Down speed at 0.5 m/s
+neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
+check_interval = 1 # The time interval between each check of the distance
+count = 0 # Counter to track how long the obstacle has been detected. 
+ALT = 1.5 # fix altitude
+Safe_Dist = 1.5 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
                         level=logging.INFO,
@@ -25,12 +37,17 @@ logging.basicConfig(filename='drone_log.log',
                         filemode='w')  
 logging.info("Start")
 
+
 dist_front, dist_back, dist_right, dist_left = get_distance()
+logging.info("Sensor readings before Takeoff - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",
+                            dist_front, dist_back, dist_right, dist_left)
 print(dist_front, dist_back, dist_right, dist_left) #testing if the distance sensor are reading before arming the drone
 
 master = connect_to_vehicle()
-Alt = 1.5 # fix altitude
-Safe_Dist = 1.5 # safe distance
+
+Battery_voltage = Battery_Volatage(master)
+logging.info("Drone  battery is at: %.2f V" % Battery_voltage)
+print("Drone  battery is at ", Battery_voltage,"V")
 
 if master:
     # Perform pre-arm check
@@ -44,83 +61,86 @@ if master:
         arm_drone(master)
         if is_armed(master):
             print("Drone is armed!")
+            logging.info("Drone is Armed")
         else:
             print("Drone is not armed.")      
             sys.exit()
         # let arm for a fix time
         time.sleep(5)
         # take to a fix altitude and hold for a fix time
-        takeoff(master, Alt, 2) 
+        takeoff(master, ALT, 2) 
         
         #scan for any obstacle before flying forward
         try:
             saftey_test_1(master, Safe_Dist )                     
         except KeyboardInterrupt: # Reset by pressing CTRL + C
-            abort_mission(master)
             logging.warning("Safty Test 1 fail")
             print("Not safe abort mission")
             print("Safty Test 1 fail")
-                
-                
+            abort_mission(master)   
+      
         try:
-          #  saftey_test_2(master, Home_lat, Home_lon, Alt ) 
-            print("skip test 2")
+            saftey_test_2(master, Home_lat, Home_lon, ALT ) 
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
             logging.warning("Safty Test 2 fail")
             print("Flying Test has be stopped by User")
             print("Safty Test 2 fail")
-                
-        target_distance = 1.15 # distance in meters
-        current_distance = 0 # The distance the drone has traveled so far
-        velocity_x = 0.5 # forward speed at 0.5 m/s
-        
-        neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
-        check_interval = 0.1 # The time interval between each check of the distance
-        count = 0 # Counter to track how long the obstacle has been detected. 
 
-       
         try:
+            logging.info("Flying to Target Distance Test Start")
             while current_distance < target_distance:
 
                 dist_front, dist_back, dist_right, dist_left = get_distance()
+                logging.info("Sensor readings - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",
+                            dist_front, dist_back, dist_right, dist_left)
                 print("Distance front: ",dist_front)
-                if( dist_front > Safe_Dist ): 
-                    fly_movment(master, velocity_x, 0, 0,1) 
+                if( dist_front is None or dist_front <= 0):
+                    logging.warning("No reading from distance sensor")
+                    print("No reading from distance sensor")
+                    break
+                elif( dist_front > Safe_Dist ): 
+                    logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f, fly_time=%.2f",
+                                    velocity_x, velocity_y, velocity_z, ALT, check_interval)
+                    fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, check_interval) 
                     current_distance += velocity_x * check_interval
                     print("Distance travel: ", current_distance)
                     logging.info("Distance traveled: %.2f meters" % current_distance)
                     count = 0
                 
                 elif( dist_front <= Safe_Dist ):
-                    fly_movment( master, neg_velocity_x , 0 , 0,1)                        
+                    logging.warning("Obstacle detected at %.2f meters in front. Moving backward.", dist_front)
+                    fly_movment( master, neg_velocity_x , velocity_y , velocity_z, ALT, check_interval)                        
                     print("Obstacle detected")                     
                     current_distance += neg_velocity_x * check_interval
                     print("Distance travel: ", current_distance) 
                     logging.info("Distance traveled after obstacle: %.2f meters" % current_distance)            
                     count += 1 
-                    if (count == 50 ): # obstacle doesn't move for 5 secounds
+                    if (count == 5 ): # obstacle doesn't move for 5 secounds
+                        print("can't reach target distance obstacle in the way")
+                        logging.info("Can't reach target distance obstacle in the way")
                         break
                 else:
-                    abort_mission(master)
                     logging.error("Invalid distance sensor reading, aborting mission")
                     print("Invalid Distance sensor read abort mission")
+                    abort_mission(master)
                     
+
+            logging.info("Target distance of %.2f meters reached.", target_distance) 
+            print(f"Target distance of {target_distance} meters reached.")     
                     
         except KeyboardInterrupt:            
             land(master)     
             disarm_drone(master)
-            sys.exit()
             logging.warning("Measurement interrupted by user")
             print("Measurement stopped by User")
             print("Not safe abort mission")
             print("Mission fail")
-                    
-        
-        #return_home(master)
+            sys.exit()
 
-        abort_mission(master)
         print("Mission Complete")
+        abort_mission(master)
+        
 
     else:
         print("Pre-arm check failed. Cannot arm or take off.")

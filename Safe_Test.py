@@ -11,9 +11,11 @@ def saftey_test_1(master, Safe_Dist):
     print("Stafey Test 1")
     while True:
         dist_front, dist_back, dist_right, dist_left = get_distance()
-        logging.info("Measured front Distance: %.1f m" % dist_front)
+        logging.info("Sensor readings - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",
+                            dist_front, dist_back, dist_right, dist_left)
+        
         print ("Measured front Distance = %.1f m" % dist_front)
-        if( dist_front <= Safe_Dist):
+        if(dist_front <= Safe_Dist):
             print("Object too close")
             logging.warning("Object too close")                        
         elif( dist_front > Safe_Dist ):
@@ -21,10 +23,11 @@ def saftey_test_1(master, Safe_Dist):
             logging.info("Safe distance, proceeding")
             break
         else: # not safe to continue
-            abort_mission(master)
-            print(" not safe to fly abort mission")
+            print(" Not safe to fly abort mission")
             print("Safty Test 1 Fail")
             logging.error("Not safe to fly, aborting mission")
+            abort_mission(master)
+            
 
 def saftey_test_2(master, Home_lat, Home_lon, Alt):
     print("Testing Movement")
@@ -34,8 +37,8 @@ def saftey_test_2(master, Home_lat, Home_lon, Alt):
     distance_travel_home = distance_travel(Home_lat, current_lat, Home_lon, current_lon)
     print("It had travel", distance_travel_home ,"meters")  
     logging.info("It had traveled {} meters".format(distance_travel_home))
-    if( distance_travel_home < 2):
-        fly_to_postion(master, Home_lat, Home_lon, Alt)
+    if( distance_travel_home < 1.5):
+        fly_to_postion(master, Home_lat, Home_lon, current_alt)
     else:
-        print("not safe to fight to home Take off")
-        logging.info("not safe to fight to home Take off")                     
+        print("not safe to fight to home position")
+        logging.info("Not safe to fight to home position ")                     
