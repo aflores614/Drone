@@ -64,7 +64,7 @@ if master:
             logging.info("Drone is Armed")
         else:
             print("Drone is not armed.")      
-            sys.exit()
+            #sys.exit()
         # let arm for a fix time
         time.sleep(5)
         # take to a fix altitude and hold for a fix time
@@ -80,7 +80,7 @@ if master:
             abort_mission(master)   
       
         try:
-            saftey_test_2(master, Home_lat, Home_lon, ALT ) 
+            #saftey_test_2(master, Home_lat, Home_lon, ALT ) 
             print("Skip test 2")
         except KeyboardInterrupt: # Reset by pressing CTRL + C
             abort_mission(master)
@@ -90,6 +90,7 @@ if master:
 
         try:
             logging.info("Flying to Target Distance Test Start")
+            print("Flying to Target Distance Test Start")
             while current_distance < target_distance:
 
                 dist_front, dist_back, dist_right, dist_left = get_distance()
@@ -101,10 +102,12 @@ if master:
                     print("No reading from distance sensor")
                     break
                 elif( dist_front > Safe_Dist ): 
+                    print("Flying Forward")
                     logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f", velocity_x, velocity_y, velocity_z, ALT)
                     current_distance = fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance ) 
-                       
+                    print("Distance Travel: ", current_distance)
                 elif( dist_front <= Safe_Dist ):
+                    print("Flying Backward")
                     logging.warning("Obstacle detected at %.2f meters in front. Moving backward.", dist_front)
                     logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f", neg_velocity_x, velocity_y, velocity_z, ALT)
                     current_distance = fly_movment(master, neg_velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance )                          

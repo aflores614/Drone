@@ -22,11 +22,16 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                                  0, 0, -ALT, 
                                                                                  vx, vy , vz, 
                                                                                  0, 0, 0, 
-                                                                                 0, 0 
-                                                                                ))
+                                                                                 0, 0 ))
+ 
+         
+                                                                               
     if(vx > 0):
-        while Travel_distance >= Target_distance:
-            dist_front, dist_back, dist_right, dist_left = get_distance()
+           
+        while Travel_distance <= Target_distance:
+            dist_front, dist_back, dist_right, dist_left = get_distance()                
+            print("Front Distance", dist_front)
+                
             if( dist_front > Safe_Dist ): 
                 print("Safe to travel Forward") 
                 time.sleep(check_interval) 
@@ -36,8 +41,10 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
             else:
                 print("Obstacle detected")
                 break
+                
     else: 
-        while Travel_distance >= Target_distance:
+                      
+        while Travel_distance <= Target_distance:
             dist_front, dist_back, dist_right, dist_left = get_distance()
             if( dist_front < Safe_Dist ): 
                 print("Flying Backward")
@@ -47,8 +54,8 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                 logging.info("Distance traveled: %.2f meters" % Travel_distance)                 
             else:                
                 break
-        
-    
+                
+
     master.mav.send(mavutil.mavlink.MAVLink_set_position_target_local_ned_message(10, master.target_system,  
                                                                                  master.target_component, 
                                                                                  mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
