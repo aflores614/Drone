@@ -1,59 +1,54 @@
-2024-08-13 20:39:47,946 - INFO - Start
-2024-08-13 20:39:49,420 - INFO - Home Position: 34.199942, -118.525594, 232.570000
-2024-08-13 20:40:06,872 - INFO - Measured front Distance: 4.5 m
-2024-08-13 20:40:06,873 - INFO - Safe distance, proceeding
-2024-08-13 20:40:08,617 - INFO - Distance traveled after obstacle: -0.05 meters
-2024-08-13 20:40:09,897 - INFO - Distance traveled after obstacle: -0.10 meters
-2024-08-13 20:40:11,541 - INFO - Distance traveled after obstacle: -0.15 meters
-2024-08-13 20:40:13,166 - INFO - Distance traveled: -0.10 meters
-2024-08-13 20:40:15,103 - INFO - Distance traveled after obstacle: -0.15 meters
-2024-08-13 20:40:16,726 - INFO - Distance traveled after obstacle: -0.20 meters
-2024-08-13 20:40:18,722 - INFO - Distance traveled: -0.15 meters
-2024-08-13 20:40:20,947 - INFO - Distance traveled: -0.10 meters
-2024-08-13 20:40:23,403 - INFO - Distance traveled: -0.05 meters
-2024-08-13 20:40:25,766 - INFO - Distance traveled: -0.00 meters
-2024-08-13 20:40:28,216 - INFO - Distance traveled: 0.05 meters
-2024-08-13 20:40:30,665 - INFO - Distance traveled: 0.10 meters
-2024-08-13 20:40:32,654 - INFO - Distance traveled: 0.15 meters
-2024-08-13 20:40:35,104 - INFO - Distance traveled: 0.20 meters
-2024-08-13 20:40:37,554 - INFO - Distance traveled: 0.25 meters
-2024-08-13 20:40:39,747 - INFO - Distance traveled: 0.30 meters
-2024-08-13 20:40:41,922 - INFO - Distance traveled: 0.35 meters
-2024-08-13 20:40:44,030 - INFO - Distance traveled: 0.40 meters
-2024-08-13 20:40:46,177 - INFO - Distance traveled: 0.45 meters
-2024-08-13 20:40:48,570 - INFO - Distance traveled: 0.50 meters
-2024-08-13 20:40:50,475 - INFO - Distance traveled: 0.55 meters
-2024-08-13 20:40:52,727 - INFO - Distance traveled: 0.60 meters
-2024-08-13 20:40:54,950 - INFO - Distance traveled: 0.65 meters
-2024-08-13 20:40:57,346 - INFO - Distance traveled: 0.70 meters
-2024-08-13 20:40:59,355 - INFO - Distance traveled: 0.75 meters
-2024-08-13 20:41:01,221 - INFO - Distance traveled: 0.80 meters
-2024-08-13 20:41:03,093 - INFO - Distance traveled: 0.85 meters
-2024-08-13 20:41:04,899 - INFO - Distance traveled: 0.90 meters
-2024-08-13 20:41:06,621 - INFO - Distance traveled: 0.95 meters
-2024-08-13 20:41:07,819 - INFO - Distance traveled: 1.00 meters
-2024-08-13 20:41:09,098 - INFO - Distance traveled: 1.05 meters
-2024-08-13 20:41:10,312 - INFO - Distance traveled: 1.10 meters
-2024-08-13 20:41:11,757 - INFO - Distance traveled after obstacle: 1.05 meters
-2024-08-13 20:41:12,948 - INFO - Distance traveled after obstacle: 1.00 meters
-2024-08-13 20:41:14,326 - INFO - Distance traveled after obstacle: 0.95 meters
-2024-08-13 20:41:15,498 - INFO - Distance traveled after obstacle: 0.90 meters
-2024-08-13 20:41:16,717 - INFO - Distance traveled after obstacle: 0.85 meters
-2024-08-13 20:41:17,858 - INFO - Distance traveled after obstacle: 0.80 meters
-2024-08-13 20:41:19,067 - INFO - Distance traveled after obstacle: 0.75 meters
-2024-08-13 20:41:20,328 - INFO - Distance traveled: 0.80 meters
-2024-08-13 20:41:21,583 - INFO - Distance traveled after obstacle: 0.75 meters
-2024-08-13 20:41:23,066 - INFO - Distance traveled: 0.80 meters
-2024-08-13 20:41:24,433 - INFO - Distance traveled: 0.85 meters
-2024-08-13 20:41:25,726 - INFO - Distance traveled after obstacle: 0.80 meters
-2024-08-13 20:41:26,896 - INFO - Distance traveled after obstacle: 0.75 meters
-2024-08-13 20:41:28,083 - INFO - Distance traveled after obstacle: 0.70 meters
-2024-08-13 20:41:29,238 - INFO - Distance traveled after obstacle: 0.65 meters
-2024-08-13 20:41:30,384 - INFO - Distance traveled after obstacle: 0.60 meters
-2024-08-13 20:41:31,556 - INFO - Distance traveled after obstacle: 0.55 meters
-2024-08-13 20:41:32,736 - INFO - Distance traveled after obstacle: 0.50 meters
-2024-08-13 20:41:33,916 - INFO - Distance traveled after obstacle: 0.45 meters
-2024-08-13 20:41:35,157 - INFO - Distance traveled after obstacle: 0.40 meters
-2024-08-13 20:41:36,341 - INFO - Distance traveled after obstacle: 0.35 meters
-2024-08-13 20:41:37,460 - INFO - Distance traveled after obstacle: 0.30 meters
-2024-08-13 20:41:38,618 -
+2024-08-14 19:04:29,685 - INFO - Start
+2024-08-14 19:04:30,130 - INFO - Sensor readings before Takeoff - Front: 1.45, Back: 2.46, Right: 3.04, Left: 0.70
+2024-08-14 19:04:31,710 - INFO - Home Position: 34.199924, -118.525602, 236.540000
+2024-08-14 19:04:31,738 - INFO - Drone is Armed
+2024-08-14 19:04:47,129 - INFO - Sensor readings - Front: 3.48, Back: 2.47, Right: 1.26, Left: 1.34
+2024-08-14 19:04:47,129 - INFO - Safe distance, proceeding
+2024-08-14 19:04:47,131 - INFO - TAKE OFF Position: 34.199937, -118.525591, 239.770000
+2024-08-14 19:04:47,132 - INFO - It had traveled 1.77 meters
+2024-08-14 19:04:47,133 - INFO - Not safe to fight to home position 
+2024-08-14 19:04:47,133 - INFO - Flying to Target Distance Test Start
+2024-08-14 19:04:47,390 - INFO - Sensor readings - Front: 3.10, Back: 0.80, Right: 1.15, Left: 1.26
+2024-08-14 19:04:47,390 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:47,892 - INFO - Distance traveled: 0.25 meters
+2024-08-14 19:04:48,417 - INFO - Sensor readings - Front: 3.81, Back: 2.57, Right: 1.20, Left: 1.25
+2024-08-14 19:04:48,418 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:48,919 - INFO - Distance traveled: 0.50 meters
+2024-08-14 19:04:49,099 - INFO - Sensor readings - Front: 1.48, Back: 0.65, Right: 1.29, Left: 1.13
+2024-08-14 19:04:49,100 - WARNING - Obstacle detected at 1.48 meters in front. Moving backward.
+2024-08-14 19:04:49,602 - INFO - Distance traveled after obstacle: 0.25 meters
+2024-08-14 19:04:49,921 - INFO - Sensor readings - Front: 2.15, Back: 2.15, Right: 1.32, Left: 1.25
+2024-08-14 19:04:49,922 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:50,424 - INFO - Distance traveled: 0.50 meters
+2024-08-14 19:04:50,900 - INFO - Sensor readings - Front: 2.74, Back: 3.89, Right: 1.33, Left: 1.26
+2024-08-14 19:04:50,901 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:51,403 - INFO - Distance traveled: 0.75 meters
+2024-08-14 19:04:51,588 - INFO - Sensor readings - Front: 0.61, Back: 1.67, Right: 1.18, Left: 1.27
+2024-08-14 19:04:51,589 - WARNING - Obstacle detected at 0.61 meters in front. Moving backward.
+2024-08-14 19:04:52,091 - INFO - Distance traveled after obstacle: 0.50 meters
+2024-08-14 19:04:52,382 - INFO - Sensor readings - Front: 1.46, Back: 2.71, Right: 1.20, Left: 1.17
+2024-08-14 19:04:52,382 - WARNING - Obstacle detected at 1.46 meters in front. Moving backward.
+2024-08-14 19:04:52,884 - INFO - Distance traveled after obstacle: 0.25 meters
+2024-08-14 19:04:53,326 - INFO - Sensor readings - Front: 2.63, Back: 3.72, Right: 1.13, Left: 1.14
+2024-08-14 19:04:53,327 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:53,828 - INFO - Distance traveled: 0.50 meters
+2024-08-14 19:04:53,994 - INFO - Sensor readings - Front: 0.88, Back: 0.93, Right: 1.07, Left: 1.17
+2024-08-14 19:04:53,994 - WARNING - Obstacle detected at 0.88 meters in front. Moving backward.
+2024-08-14 19:04:54,496 - INFO - Distance traveled after obstacle: 0.25 meters
+2024-08-14 19:04:54,683 - INFO - Sensor readings - Front: 0.97, Back: 1.50, Right: 1.05, Left: 1.26
+2024-08-14 19:04:54,683 - WARNING - Obstacle detected at 0.97 meters in front. Moving backward.
+2024-08-14 19:04:55,185 - INFO - Distance traveled after obstacle: 0.00 meters
+2024-08-14 19:04:55,497 - INFO - Sensor readings - Front: 3.01, Back: 1.12, Right: 0.88, Left: 0.65
+2024-08-14 19:04:55,498 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:55,999 - INFO - Distance traveled: 0.25 meters
+2024-08-14 19:04:56,389 - INFO - Sensor readings - Front: 2.98, Back: 1.59, Right: 0.74, Left: 0.73
+2024-08-14 19:04:56,389 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:56,891 - INFO - Distance traveled: 0.50 meters
+2024-08-14 19:04:57,232 - INFO - Sensor readings - Front: 3.48, Back: 0.82, Right: 0.67, Left: 0.61
+2024-08-14 19:04:57,233 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:57,735 - INFO - Distance traveled: 0.75 meters
+2024-08-14 19:04:57,994 - INFO - Sensor readings - Front: 1.66, Back: 1.57, Right: 1.75, Left: 0.75
+2024-08-14 19:04:57,995 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50
+2024-08-14 19:04:58,496 - INFO - Distance traveled: 1.00 meters
+2024-08-14 19:04:58,698 - INFO - Sensor readings - Front: 1.73, Back: 1.83, Right: 0.79, Left: 0.95
+2024-08-14 19:04:58,699 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=1.50, fly_time=0.50

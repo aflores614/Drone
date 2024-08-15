@@ -38,7 +38,8 @@ def saftey_test_2(master, Home_lat, Home_lon, Alt):
     print("It had travel", distance_travel_home ,"meters")  
     logging.info("It had traveled {} meters".format(distance_travel_home))
     if( distance_travel_home < 1.5):
-        fly_to_postion(master, Home_lat, Home_lon, current_alt)
+        #fly_to_postion(master, Home_lat, Home_lon, current_alt)
+        print("Safe Range")
     else:
         print("not safe to fight to home position")
         logging.info("Not safe to fight to home position ")                     
