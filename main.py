@@ -93,34 +93,21 @@ if master:
             while current_distance < target_distance:
 
                 dist_front, dist_back, dist_right, dist_left = get_distance()
-                logging.info("Sensor readings - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",
-                            dist_front, dist_back, dist_right, dist_left)
+                logging.info("Sensor readings - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",dist_front, dist_back, dist_right, dist_left)
                 print("Distance front: ",dist_front)
+
                 if( dist_front is None or dist_front <= 0):
                     logging.warning("No reading from distance sensor")
                     print("No reading from distance sensor")
                     break
                 elif( dist_front > Safe_Dist ): 
-                    logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f, fly_time=%.2f",
-                                    velocity_x, velocity_y, velocity_z, ALT, check_interval)
-                    fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, check_interval) 
-                    current_distance += velocity_x * check_interval
-                    print("Distance travel: ", current_distance)
-                    logging.info("Distance traveled: %.2f meters" % current_distance)
-                    count = 0
-                
+                    logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f", velocity_x, velocity_y, velocity_z, ALT)
+                    current_distance = fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance ) 
+                       
                 elif( dist_front <= Safe_Dist ):
                     logging.warning("Obstacle detected at %.2f meters in front. Moving backward.", dist_front)
-                    fly_movment( master, neg_velocity_x , velocity_y , velocity_z, ALT, check_interval)                        
-                    print("Obstacle detected")                     
-                    current_distance += neg_velocity_x * check_interval
-                    print("Distance travel: ", current_distance) 
-                    logging.info("Distance traveled after obstacle: %.2f meters" % current_distance)            
-                    count += 1 
-                    if (count == 5 ): # obstacle doesn't move for 5 secounds
-                        print("can't reach target distance obstacle in the way")
-                        logging.info("Can't reach target distance obstacle in the way")
-                        break
+                    logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f", neg_velocity_x, velocity_y, velocity_z, ALT)
+                    current_distance = fly_movment(master, neg_velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance )                          
                 else:
                     logging.error("Invalid distance sensor reading, aborting mission")
                     print("Invalid Distance sensor read abort mission")
