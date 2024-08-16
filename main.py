@@ -20,16 +20,16 @@ from abort_mission import abort_mission
 from Safe_Test import saftey_test_1,  saftey_test_2
 from Battery_Info import Battery_Volatage
 
-target_distance = 6 # distance in meters
+target_distance = 4 # distance in meters
 current_distance = 0 # The distance the drone has traveled so far
-velocity_x = 0.5 # forward speed at 0.5 m/s
+velocity_x = 1 # forward speed at 0.5 m/s
 velocity_y = 0 # Right speed at 0.5 m/s
 velocity_z = 0 # Down speed at 0.5 m/s
 neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
 count = 0 # Counter to track how long the obstacle has been detected. 
 ALT = 1.5 # fix altitude
-Safe_Dist = 1.5 # safe distance
+Safe_Dist = 1 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
                         level=logging.INFO,
@@ -38,10 +38,10 @@ logging.basicConfig(filename='drone_log.log',
 logging.info("Start")
 
 
-dist_front, dist_back, dist_right, dist_left = get_distance()
-logging.info("Sensor readings before Takeoff - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",
-                            dist_front, dist_back, dist_right, dist_left)
-print(dist_front, dist_back, dist_right, dist_left) #testing if the distance sensor are reading before arming the drone
+dist_front = get_distance()
+logging.info("Sensor readings before Takeoff - Front: %.2f",
+                            dist_front)
+print(dist_front) #testing if the distance sensor are reading before arming the drone
 
 master = connect_to_vehicle()
 
@@ -93,8 +93,8 @@ if master:
             print("Flying to Target Distance Test Start")
             while current_distance < target_distance:
 
-                dist_front, dist_back, dist_right, dist_left = get_distance()
-                logging.info("Sensor readings - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",dist_front, dist_back, dist_right, dist_left)
+                dist_front = get_distance()
+                logging.info("Sensor readings - Front: %.2f",dist_front)
                 print("Distance front: ",dist_front)
 
                 if( dist_front is None or dist_front <= 0):

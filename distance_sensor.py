@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 import time
- 
+import sys 
 #set GPIO Pins
 GPIO_TRIGGER_E = 23
 GPIO_ECHO_E = 24
@@ -71,30 +71,39 @@ def avg_distance(num_samples, GPIO_TRIGGER, GPIO_ECHO):
             distances.append(dist)
     if len(distances) == 0:
          return -1
-    return round(sum(distances)/ len(distances), 2)
+    return round(sorted(distances)[len(distances)//2], 2)
+    
+
 
 def get_distance():
-    num_sample = 5
-    dist_E = avg_distance(num_sample,GPIO_TRIGGER_E, GPIO_ECHO_E ) 
-    dist_W = avg_distance(num_sample,GPIO_TRIGGER_W, GPIO_ECHO_W )   
-    dist_S = avg_distance(num_sample,GPIO_TRIGGER_S, GPIO_ECHO_S)   
+    num_sample = 30
+    #dist_E = avg_distance(num_sample,GPIO_TRIGGER_E, GPIO_ECHO_E ) 
+    #dist_W = avg_distance(num_sample,GPIO_TRIGGER_W, GPIO_ECHO_W )   
+    #dist_S = avg_distance(num_sample,GPIO_TRIGGER_S, GPIO_ECHO_S)   
     dist_N = avg_distance(num_sample,GPIO_TRIGGER_N, GPIO_ECHO_N)   
-
     try:
-        return  dist_N ,dist_S, dist_E , dist_W
+        return  dist_N
     except Exception as e:
         return None, None, None, None
+        
 if __name__ == "__main__":
     while True:
-        dist_N, dist_S, dist_E , dist_W= get_distance() 
-            
-        if( dist_N < 1.0 ):
+        start_time = time.time()
+        dist_N = get_distance() 
+        end_time = time.time()
+        total_time = end_time - start_time
+        print(total_time)
+       
+        if(dist_N < 1.0):
                 print("Obstacle Dectect")
+                print("Measured North Distance = %.2f m" % dist_N)
+                print(dist_N)
         else:
-            print("Measured East Distance = %.2f m" % dist_E)
-            print("Measured West Distance = %.2f m" % dist_W)            
-            print("Measured South Distance = %.2f m" % dist_S)
+            #print("Measured East Distance = %.2f m" % dist_E)
+            #print("Measured West Distance = %.2f m" % dist_W)            
+            #print("Measured South Distance = %.2f m" % dist_S)
             print("Measured North Distance = %.2f m" % dist_N)
+         
 
 
                     

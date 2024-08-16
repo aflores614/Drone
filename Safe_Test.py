@@ -10,9 +10,9 @@ from set_movment import fly_to_postion
 def saftey_test_1(master, Safe_Dist):
     print("Stafey Test 1")
     while True:
-        dist_front, dist_back, dist_right, dist_left = get_distance()
-        logging.info("Sensor readings - Front: %.2f, Back: %.2f, Right: %.2f, Left: %.2f",
-                            dist_front, dist_back, dist_right, dist_left)
+        dist_front = get_distance()
+        logging.info("Sensor readings - Front: %.2f",
+                            dist_front)
         
         print ("Measured front Distance = %.1f m" % dist_front)
         if(dist_front <= Safe_Dist):

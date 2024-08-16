@@ -6,7 +6,7 @@ from  distance_sensor import distance
 from get_location import get_location
 from distance_sensor import get_distance
 
-check_interval = 0.1
+check_interval = 0.5
 
 
 def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_distance ):
@@ -29,7 +29,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
     if(vx > 0):
            
         while Travel_distance <= Target_distance:
-            dist_front, dist_back, dist_right, dist_left = get_distance()                
+            dist_front = get_distance()                
             print("Front Distance", dist_front)
                 
             if( dist_front > Safe_Dist ): 
@@ -45,7 +45,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
     else: 
                       
         while Travel_distance <= Target_distance:
-            dist_front, dist_back, dist_right, dist_left = get_distance()
+            dist_front = get_distance()
             if( dist_front < Safe_Dist ): 
                 print("Flying Backward")
                 time.sleep(check_interval) 
