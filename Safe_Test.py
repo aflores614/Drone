@@ -1,7 +1,7 @@
 from pymavlink import mavutil
 import time
 import logging
-from distance_sensor import get_distance
+from lidar_distance import get_distance
 from abort_mission import abort_mission
 from travel_distance import distance_travel
 from get_location import get_location

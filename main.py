@@ -13,7 +13,7 @@ from return_home import return_home
 from land import land
 from fly_forward import fly_forward
 from check_pre_arm import check_pre_arm
-from distance_sensor import get_distance
+from lidar_distance import get_distance
 from set_movment import fly_movment, fly_to_postion
 from travel_distance import distance_travel
 from abort_mission import abort_mission

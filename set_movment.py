@@ -2,7 +2,7 @@ from pymavlink import mavutil
 import logging
 import math
 import time
-from  distance_sensor import distance
+from lidar_distance import get_distance
 from get_location import get_location
 from distance_sensor import get_distance
 
