@@ -26,18 +26,18 @@ def set_servo_angle(angle):
     pwm.ChangeDutyCycle(0)
   except Exception as e:
         print(f"Error in set_servo_angle: {e}")
+        
+angle = 20  # Move servo to 180 degrees
+set_servo_angle(angle)
+time.sleep(0.25)  # Small delay
 
-
-def lidar_motor(): 
-    angle = 180  # Move servo to 180 degrees
-    set_servo_angle(angle)
-    time.sleep(0.25)  # Small delay 
+def lidar_motor():  
  
     while True:
             
          
             
-            angle = 120  # Move servo to 180 degrees
+            angle = 20  # Move servo to 180 degrees
             set_servo_angle(angle)
             time.sleep(0.25)  # Small delay
             
@@ -45,17 +45,13 @@ def lidar_motor():
             set_servo_angle(angle)
             time.sleep(0.25)  # Small delay
 
-            angle = 20  # Move servo to 0 degrees
-            set_servo_angle(angle)
-            time.sleep(0.25)  # Small delay
-            
-            angle = 70  # Move servo to 0 degrees
+            angle = 120  # Move servo to 0 degrees
             set_servo_angle(angle)
             time.sleep(0.25)  # Small delay
             
             
 servo_thread = threading.Thread(target=lidar_motor)
 servo_thread.start()
-#while True:
- #   dist_front = get_distance()
-  #  print(dist_front)
+while True:
+    dist_front = get_distance()
+    print(dist_front)

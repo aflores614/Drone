@@ -2,6 +2,7 @@ from pymavlink import mavutil
 import time
 import sys
 import logging
+import threading
 from connect_to_vehicle import connect_to_vehicle
 from arm_drone import arm_drone
 from arm_drone import is_armed
@@ -19,6 +20,7 @@ from travel_distance import distance_travel
 from abort_mission import abort_mission
 from Safe_Test import saftey_test_1,  saftey_test_2
 from Battery_Info import Battery_Volatage
+from motor_servo import  lidar_motor
 
 target_distance = 4 # distance in meters
 current_distance = 0 # The distance the drone has traveled so far
@@ -38,6 +40,8 @@ logging.basicConfig(filename='drone_log.log',
 logging.info("Start")
 
 
+servo_thread = threading.Thread(target=lidar_motor)
+servo_thread.start()
 dist_front = get_distance()
 logging.info("Sensor readings before Takeoff - Front: %.2f",
                             dist_front)
