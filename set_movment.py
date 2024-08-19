@@ -4,7 +4,7 @@ import math
 import time
 from lidar_distance import get_distance
 from get_location import get_location
-from distance_sensor import get_distance
+
 
 check_interval = 0.5
 
@@ -25,10 +25,11 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                                  0, 0 ))
  
          
-                                                                               
+    print("test 1")                                                                          
     if(vx > 0):
-           
+        print("TEST 2")
         while Travel_distance <= Target_distance:
+            print("waiting for distance")
             dist_front = get_distance()                
             print("Front Distance", dist_front)
                 

@@ -53,6 +53,7 @@ if master:
     # Perform pre-arm check
     if check_pre_arm(master):
         # get take off  coordinate 
+        print("Getting Home Position")
         Home_lat, Home_lon, Home_alt = get_location(master) 
         print("Home postion is set:")
         print(Home_lat, Home_lon, Home_alt) 
@@ -97,7 +98,7 @@ if master:
                 logging.info("Sensor readings - Front: %.2f",dist_front)
                 print("Distance front: ",dist_front)
 
-                if( dist_front is None or dist_front <= 0):
+                if( dist_front is None ):
                     logging.warning("No reading from distance sensor")
                     print("No reading from distance sensor")
                     break

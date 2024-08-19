@@ -1,2 +1,35 @@
-2024-08-17 22:03:04,144 - INFO - Start
-2024-08-17 22:03:04,542 - INFO - Sensor readings before Takeoff - Front: 6.65
+2024-08-18 14:15:07,509 - INFO - Start
+2024-08-18 14:15:07,906 - INFO - Sensor readings before Takeoff - Front: 1.32
+2024-08-18 14:15:09,480 - INFO - Home Position: 34.199877, -118.525486, 248.820000
+2024-08-18 14:15:25,945 - INFO - Sensor readings - Front: 7.20
+2024-08-18 14:15:25,946 - INFO - Safe distance, proceeding
+2024-08-18 14:15:25,946 - INFO - Flying to Target Distance Test Start
+2024-08-18 14:15:26,344 - INFO - Sensor readings - Front: 1.35
+2024-08-18 14:15:26,345 - INFO - fly_movment called with vx=1.00, vy=0.00, vz=0.00, ALT=1.50
+2024-08-18 14:15:27,243 - INFO - Distance traveled: 0.50 meters
+2024-08-18 14:15:28,144 - INFO - Distance traveled: 1.00 meters
+2024-08-18 14:15:29,043 - INFO - Distance traveled: 1.50 meters
+2024-08-18 14:15:29,943 - INFO - Distance traveled: 2.00 meters
+2024-08-18 14:15:30,842 - INFO - Distance traveled: 2.50 meters
+2024-08-18 14:15:31,746 - INFO - Distance traveled: 3.00 meters
+2024-08-18 14:15:32,552 - INFO - Sensor readings - Front: 0.12
+2024-08-18 14:15:32,553 - WARNING - Obstacle detected at 0.12 meters in front. Moving backward.
+2024-08-18 14:15:32,553 - INFO - fly_movment called with vx=-1.00, vy=0.00, vz=0.00, ALT=1.50
+2024-08-18 14:15:33,451 - INFO - Distance traveled: 2.50 meters
+2024-08-18 14:15:34,351 - INFO - Distance traveled: 2.00 meters
+2024-08-18 14:15:35,251 - INFO - Distance traveled: 1.50 meters
+2024-08-18 14:15:36,151 - INFO - Distance traveled: 1.00 meters
+2024-08-18 14:15:37,051 - INFO - Distance traveled: 0.50 meters
+2024-08-18 14:15:37,951 - INFO - Distance traveled: 0.00 meters
+2024-08-18 14:15:38,750 - INFO - Sensor readings - Front: 1.37
+2024-08-18 14:15:38,750 - INFO - fly_movment called with vx=1.00, vy=0.00, vz=0.00, ALT=1.50
+2024-08-18 14:15:39,649 - INFO - Distance traveled: 0.50 meters
+2024-08-18 14:15:40,552 - INFO - Distance traveled: 1.00 meters
+2024-08-18 14:15:41,452 - INFO - Distance traveled: 1.50 meters
+2024-08-18 14:15:42,357 - INFO - Distance traveled: 2.00 meters
+2024-08-18 14:15:43,257 - INFO - Distance traveled: 2.50 meters
+2024-08-18 14:15:44,160 - INFO - Distance traveled: 3.00 meters
+2024-08-18 14:15:45,068 - INFO - Distance traveled: 3.50 meters
+2024-08-18 14:15:45,967 - INFO - Distance traveled: 4.00 meters
+2024-08-18 14:15:46,867 - INFO - Distance traveled: 4.50 meters
+2024-08-18 14:15:46,868 - INFO - Target distance of 4.00 meters reached.
