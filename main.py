@@ -31,7 +31,7 @@ neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
 count = 0 # Counter to track how long the obstacle has been detected. 
 ALT = 1.5 # fix altitude
-Safe_Dist = 1 # safe distance
+Safe_Dist = 0.75 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
                         level=logging.INFO,
@@ -70,7 +70,7 @@ if master:
             logging.info("Drone is Armed")
         else:
             print("Drone is not armed.")      
-            #sys.exit()
+            sys.exit()
         # let arm for a fix time
         time.sleep(5)
         # take to a fix altitude and hold for a fix time

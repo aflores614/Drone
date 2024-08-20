@@ -1,2 +1,40 @@
-2024-08-19 16:29:35,569 - INFO - Start
-2024-08-19 16:29:35,998 - INFO - Sensor readings before Takeoff - Front: 0.89
+2024-08-19 18:02:01,494 - INFO - Start
+2024-08-19 18:02:01,911 - INFO - Sensor readings before Takeoff - Front: 0.52
+2024-08-19 18:02:03,079 - INFO - Home Position: 34.199950, -118.525616, 235.350000
+2024-08-19 18:02:03,110 - INFO - Drone is Armed
+2024-08-19 18:02:15,468 - INFO - Sensor readings - Front: 0.00
+2024-08-19 18:02:15,468 - WARNING - Object too close
+2024-08-19 18:02:15,871 - INFO - Sensor readings - Front: 0.00
+2024-08-19 18:02:15,871 - WARNING - Object too close
+2024-08-19 18:02:16,271 - INFO - Sensor readings - Front: 0.00
+2024-08-19 18:02:16,271 - WARNING - Object too close
+2024-08-19 18:02:16,671 - INFO - Sensor readings - Front: 0.00
+2024-08-19 18:02:16,671 - WARNING - Object too close
+2024-08-19 18:02:17,070 - INFO - Sensor readings - Front: 0.00
+2024-08-19 18:02:17,071 - WARNING - Object too close
+2024-08-19 18:02:17,470 - INFO - Sensor readings - Front: 1.55
+2024-08-19 18:02:17,471 - INFO - Safe distance, proceeding
+2024-08-19 18:02:17,471 - INFO - Flying to Target Distance Test Start
+2024-08-19 18:02:17,873 - INFO - Sensor readings - Front: 6.75
+2024-08-19 18:02:17,874 - INFO - fly_movment called with vx=1.00, vy=0.00, vz=0.00, ALT=1.50
+2024-08-19 18:02:18,693 - INFO - Sensor readings - Front: 0.00
+2024-08-19 18:02:18,694 - WARNING - Obstacle detected at 0.00 meters in front. Moving backward.
+2024-08-19 18:02:18,694 - INFO - fly_movment called with vx=-1.00, vy=0.00, vz=0.00, ALT=1.50
+2024-08-19 18:02:19,593 - INFO - Distance traveled: -0.50 meters
+2024-08-19 18:02:20,495 - INFO - Distance traveled: -1.00 meters
+2024-08-19 18:02:21,399 - INFO - Distance traveled: -1.50 meters
+2024-08-19 18:02:22,300 - INFO - Distance traveled: -2.00 meters
+2024-08-19 18:02:23,201 - INFO - Distance traveled: -2.50 meters
+2024-08-19 18:02:24,106 - INFO - Distance traveled: -3.00 meters
+2024-08-19 18:02:25,007 - INFO - Distance traveled: -3.50 meters
+2024-08-19 18:02:25,907 - INFO - Distance traveled: -4.00 meters
+2024-08-19 18:02:26,808 - INFO - Distance traveled: -4.50 meters
+2024-08-19 18:02:27,613 - INFO - Sensor readings - Front: 0.00
+2024-08-19 18:02:27,614 - WARNING - Obstacle detected at 0.00 meters in front. Moving backward.
+2024-08-19 18:02:27,614 - INFO - fly_movment called with vx=-1.00, vy=0.00, vz=0.00, ALT=1.50
+2024-08-19 18:02:28,517 - INFO - Distance traveled: -5.00 meters
+2024-08-19 18:02:29,430 - INFO - Distance traveled: -5.50 meters
+2024-08-19 18:02:30,331 - INFO - Distance traveled: -6.00 meters
+2024-08-19 18:02:31,131 - INFO - Sensor readings - Front: 1.30
+2024-08-19 18:02:31,131 - INFO - fly_movment called with vx=1.00, vy=0.00, vz=0.00, ALT=1.50
+2024-08-19 18:02:32,031 - INFO - Distance traveled: -5.50 meters

@@ -66,7 +66,12 @@ def get_distance():
     num_sample = 100
     set_sample_rate(250)
     distance = avg_distance(num_sample) 
-    return distance
+    if(distance == 0):
+        return 8
+    elif(distance < 0.3):
+        return 8
+    else:
+        return distance
 if __name__ == "__main__":
     try:
         while True:
