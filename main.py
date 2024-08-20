@@ -43,6 +43,7 @@ logging.info("Start")
 servo_thread = threading.Thread(target=lidar_motor)
 servo_thread.start()
 dist_front = get_distance()
+
 logging.info("Sensor readings before Takeoff - Front: %.2f",
                             dist_front)
 print(dist_front) #testing if the distance sensor are reading before arming the drone
@@ -135,6 +136,11 @@ if master:
             sys.exit()
 
         print("Mission Complete")
+        LAND_lat, LAND_lon, LAND_alt = get_location(master) 
+        total_distance_travel = distance_travel(Home_lat, LAND_lat, Home_lon, LAND_lon)
+        logging.info("Land Position: %f, %f, %f" % (LAND_lat, LAND_lon, LAND_alt))
+        print("Total Distance Tavel: ", total_distance_travel )
+        logging.info("Total Distance Travel (GPS) : %f" % (total_distance_travel))
         abort_mission(master)
         
 
