@@ -56,6 +56,6 @@ def lidar_motor():
             
 servo_thread = threading.Thread(target=lidar_motor)
 servo_thread.start()
-while True:
-    dist_front = get_distance()
-    print(dist_front)
+#while True:
+ #   dist_front = get_distance()
+  #  print(dist_front)
