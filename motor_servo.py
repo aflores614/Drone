@@ -18,12 +18,12 @@ pwm.start(0)  # Start PWM with 0% duty cycle (off)
 
 def set_servo_angle(angle):
   try:
-    duty = 2 + (angle / 18)  # Convert angle to duty cycle
+    duty = angle / 18 + 3  # Convert angle to duty cycle
     GPIO.output(servo_pin, True)
     pwm.ChangeDutyCycle(duty)
-    time.sleep(0.5)
+    time.sleep(1)
     GPIO.output(servo_pin, False)
-    pwm.ChangeDutyCycle(0)
+    pwm.ChangeDutyCycle(duty)
   except Exception as e:
         print(f"Error in set_servo_angle: {e}")
 
