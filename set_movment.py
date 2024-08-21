@@ -36,6 +36,8 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
             if( dist_front > Safe_Dist ): 
                 print("Safe to travel Forward") 
                 time.sleep(check_interval) 
+                Current_lat, Current_lon, Current_alt = get_location(master) 
+                total_distance_travel = distance_travel(Home_lat, LAND_lat, Home_lon, LAND_lon)
                 Travel_distance += vx * check_interval 
                 print("Current distance travel: ", Travel_distance)
                 logging.info("Distance traveled: %.2f meters" % Travel_distance)                     

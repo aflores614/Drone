@@ -18,10 +18,10 @@ pwm.start(0)  # Start PWM with 0% duty cycle (off)
 
 def set_servo_angle(angle):
   try:
-    duty = angle / 18 + 3  # Convert angle to duty cycle
+    duty = 2 + (angle / 18)   # Convert angle to duty cycle
     GPIO.output(servo_pin, True)
     pwm.ChangeDutyCycle(duty)
-    time.sleep(1)
+    time.sleep(0.1)
     GPIO.output(servo_pin, False)
     pwm.ChangeDutyCycle(duty)
   except Exception as e:
@@ -29,33 +29,30 @@ def set_servo_angle(angle):
 
 
 def lidar_motor(): 
-    angle = 180  # Move servo to 180 degrees
-    set_servo_angle(angle)
-    time.sleep(0.25)  # Small delay 
+ 
  
     while True:
+            #angle = 90  # Move servo to 90 degrees
+            #set_servo_angle(angle)
+        
             
+            
+            for angle in range(80, 100, 1):  # Increase angle from 0 to 180
+                set_servo_angle(angle)
+                time.sleep(0.1)  # Adjust the delay to control speed
+              
+        # Sweep from 180 to 0 degrees
+           # for angle in range(100, 80, -5):  # Decrease angle from 180 to 0
+            ##   time.sleep(1)  
+              
          
             
-            angle = 110  # Move servo to 180 degrees
-            set_servo_angle(angle)
-            time.sleep(0.25)  # Small delay
             
-            angle = 90  # Move servo to 0 degrees
-            set_servo_angle(angle)
-            time.sleep(0.25)  # Small delay
-
-            angle = 70  # Move servo to 0 degrees
-            set_servo_angle(angle)
-            time.sleep(0.25)  # Small delay
-            
-            angle = 90  # Move servo to 0 degrees
-            set_servo_angle(angle)
-            time.sleep(0.25)  # Small delay
             
             
 servo_thread = threading.Thread(target=lidar_motor)
 servo_thread.start()
-#while True:
- #   dist_front = get_distance()
-  #  print(dist_front)
+while True:
+   
+    dist_front = get_distance()
+    print(dist_front)
