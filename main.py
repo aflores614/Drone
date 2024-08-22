@@ -22,14 +22,14 @@ from Safe_Test import saftey_test_1,  saftey_test_2
 from Battery_Info import Battery_Volatage
 from motor_servo import  lidar_motor
 
-target_distance = 5 # distance in meters
+target_distance = 2 # distance in meters
 current_distance = 0 # The distance the drone has traveled so far
 velocity_x = 1 # forward speed at 1 m/s
 velocity_y = 0 # Right speed at 0.0 m/s
 velocity_z = 0 # Down speed at 0.0 m/s
 neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
-ALT = 1.5 # fix altitude
+ALT = 1.1 # fix altitude
 Safe_Dist = 0.75 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
@@ -39,8 +39,8 @@ logging.basicConfig(filename='drone_log.log',
 logging.info("Start")
 
 
-servo_thread = threading.Thread(target=lidar_motor)
-servo_thread.start()
+#servo_thread = threading.Thread(target=lidar_motor)
+#servo_thread.start()
 dist_front = get_distance()
 
 logging.info("Sensor readings before Takeoff - Front: %.2f",

@@ -30,7 +30,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                              
     if(vx > 0):
        
-        while total_distance_travel <= Target_distance:
+        while Travel_distance <= Target_distance:
             print("waiting for distance")
             dist_front = get_distance()                
             print("Front Distance", dist_front)
@@ -41,7 +41,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                 Travel_distance = distance_travel(Home_lat, Current_lat, Home_lon, Current_lon) 
                 print("Current distance travel: ", Travel_distance)
                 logging.info("Distance traveled: %.2f meters" % Travel_distance) 
-                time.sleep(check_interval)                      
+                time.sleep(5)                      
             else:
                 print("Obstacle detected")
                 break
