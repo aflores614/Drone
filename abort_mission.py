@@ -7,6 +7,7 @@ from land import land
 def abort_mission(master):
     land(master)     
     disarm_drone(master)
+    set_mode(master,'STABILIZE')
     sys.exit()
     
 if __name__ == "__main__":

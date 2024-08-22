@@ -22,14 +22,13 @@ from Safe_Test import saftey_test_1,  saftey_test_2
 from Battery_Info import Battery_Volatage
 from motor_servo import  lidar_motor
 
-target_distance = 4 # distance in meters
+target_distance = 5 # distance in meters
 current_distance = 0 # The distance the drone has traveled so far
-velocity_x = 1 # forward speed at 0.5 m/s
-velocity_y = 0 # Right speed at 0.5 m/s
-velocity_z = 0 # Down speed at 0.5 m/s
+velocity_x = 1 # forward speed at 1 m/s
+velocity_y = 0 # Right speed at 0.0 m/s
+velocity_z = 0 # Down speed at 0.0 m/s
 neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
-count = 0 # Counter to track how long the obstacle has been detected. 
 ALT = 1.5 # fix altitude
 Safe_Dist = 0.75 # safe distance
 
@@ -110,13 +109,13 @@ if master:
                 elif( dist_front > Safe_Dist ): 
                     print("Flying Forward")
                     logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f", velocity_x, velocity_y, velocity_z, ALT)
-                    current_distance = fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance ) 
+                    current_distance = fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance,Home_lat, Home_lon  ) 
                     print("Distance Travel: ", current_distance)
                 elif( dist_front <= Safe_Dist ):
                     print("Flying Backward")
                     logging.warning("Obstacle detected at %.2f meters in front. Moving backward.", dist_front)
                     logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f", neg_velocity_x, velocity_y, velocity_z, ALT)
-                    current_distance = fly_movment(master, neg_velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance )                          
+                    current_distance = fly_movment(master, neg_velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance,Home_lat, Home_lon  )                          
                 else:
                     logging.error("Invalid distance sensor reading, aborting mission")
                     print("Invalid Distance sensor read abort mission")

@@ -4,12 +4,14 @@ import math
 import time
 from lidar_distance import get_distance
 from get_location import get_location
+from travel_distance import distance_travel
+
 
 
 check_interval = 0.5
 
 
-def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_distance ):
+def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_distance, Home_lat, Home_lon ):
    
     # vx value for foward
     # vy value for right
@@ -25,22 +27,21 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                                  0, 0 ))
  
          
-    print("test 1")                                                                          
+                                                                             
     if(vx > 0):
-        print("TEST 2")
-        while Travel_distance <= Target_distance:
+       
+        while total_distance_travel <= Target_distance:
             print("waiting for distance")
             dist_front = get_distance()                
             print("Front Distance", dist_front)
                 
             if( dist_front > Safe_Dist ): 
                 print("Safe to travel Forward") 
-                time.sleep(check_interval) 
                 Current_lat, Current_lon, Current_alt = get_location(master) 
-                total_distance_travel = distance_travel(Home_lat, LAND_lat, Home_lon, LAND_lon)
-                Travel_distance += vx * check_interval 
+                Travel_distance = distance_travel(Home_lat, Current_lat, Home_lon, Current_lon) 
                 print("Current distance travel: ", Travel_distance)
-                logging.info("Distance traveled: %.2f meters" % Travel_distance)                     
+                logging.info("Distance traveled: %.2f meters" % Travel_distance) 
+                time.sleep(check_interval)                      
             else:
                 print("Obstacle detected")
                 break
@@ -50,12 +51,14 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
         while Travel_distance <= Target_distance:
             dist_front = get_distance()
             if( dist_front < Safe_Dist ): 
-                print("Flying Backward")
-                time.sleep(check_interval) 
-                Travel_distance += vx * check_interval 
+                print("Flying Backward")                
+                Current_lat, Current_lon, Current_alt = get_location(master) 
+                Travel_distance = distance_travel(Home_lat, Current_lat, Home_lon, Current_lon)
                 print("Current distance travel: ", Travel_distance)
-                logging.info("Distance traveled: %.2f meters" % Travel_distance)                 
-            else:                
+                logging.info("Distance traveled: %.2f meters" % Travel_distance)  
+                time.sleep(check_interval)                
+            else:       
+                print("No Obstacle Detected")         
                 break
                 
 
