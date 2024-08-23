@@ -22,7 +22,7 @@ from Safe_Test import saftey_test_1,  saftey_test_2
 from Battery_Info import Battery_Volatage
 from motor_servo import  lidar_motor
 
-target_distance = 2 # distance in meters
+target_distance = 5 # distance in meters
 current_distance = 0 # The distance the drone has traveled so far
 velocity_x = 1 # forward speed at 1 m/s
 velocity_y = 0 # Right speed at 0.0 m/s
@@ -74,7 +74,7 @@ if master:
         time.sleep(5)
         # take to a fix altitude and hold for a fix time
         takeoff(master, ALT, 2) 
-        
+        print("begin")
         #scan for any obstacle before flying forward
         try:
             saftey_test_1(master, Safe_Dist )                     

@@ -20,7 +20,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                                  master.target_component, 
                                                                                  mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
                                                                                  int(0b110111000000), 
-                                                                                 0, 0, -ALT, 
+                                                                                 0, 0, 1.1, 
                                                                                  vx, vy , vz, 
                                                                                  0, 0, 0, 
                                                                                  0, 0 
@@ -66,7 +66,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                                  mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
                                                                                  int(0b110111000011 ), 
                                                                                  0, 0, -ALT, 
-                                                                                 0, 0 , 0, 
+                                                                                 vx, vy , vz, 
                                                                                  0, 0, 0, 
                                                                                  0, 0 
                                                                                 ))
