@@ -33,8 +33,7 @@ def set_sample_rate(rate):
 # Function to read and decode data from TF-Luna
 def read_lidar_data():
     ser.flushInput()  # Clear any residual data
-    data = ser.read(9)
-    
+    data = ser.read(9)    
     # Check if the data frame is complete
     if len(data) == 9:
         # Check for valid data frame starting with 0x59 0x59
@@ -52,26 +51,28 @@ def avg_distance(num_samples):
     distances = []  # Initialize the list to store distances
 
     for _ in range(num_samples):
-        dist = read_lidar_data()  # Call the function to get a distance measurement
+        dist = read_lidar_data()  
         if dist is not None:  # Check if the measurement is valid
             distances.append(dist)
-        #time.sleep(0.01)  # Delay between measurements
+ 
 
     if len(distances) == 0:
-        return -1  # Return -1 if no valid distances were collected
+        return -1  
     average_distance = sum(distances) / len(distances)
     
     return round(average_distance, 2)
+
 def get_distance():
     num_sample = 100
     set_sample_rate(250)
     distance = avg_distance(num_sample) 
-    if(distance == 0):
+    if(distance == 0): #the distance is greather than the max distance of the lidar capacity
         return 8
-    elif(distance < 0.3):
-        return 8
+    elif(distance < 0.1): #item is too close for readings 
+        return 0.1
     else:
         return distance
+    
 if __name__ == "__main__":
     try:
         while True:

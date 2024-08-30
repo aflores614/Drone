@@ -20,53 +20,53 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                                  master.target_component, 
                                                                                  mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
                                                                                  int(0b110111000000), 
-                                                                                 0, 0, 1.1, 
+                                                                                 0, 0, 0, 
                                                                                  vx, vy , vz, 
                                                                                  0, 0, 0, 
                                                                                  0, 0 
                                                                                  ))
-    if(vx > 0):
-       
-        while Travel_distance <= Target_distance:
-            print("waiting for distance")
-            dist_front = get_distance()                
-            print("Front Distance", dist_front)
-            logging.info("Front Distance: %.2f meters" %dist_front) 
+
+    while Travel_distance <= Target_distance:
+        print("waiting for distance")
+        dist_front = get_distance()                
+        print("Front Distance", dist_front)
+        logging.info("Front Distance: %.2f meters" %dist_front)       
+
                 
-            if( dist_front > Safe_Dist ): 
-                print("Safe to travel Forward") 
-                logging.info("Safe to fly forward")
-                Current_lat, Current_lon, Current_alt = get_location(master) 
-                Travel_distance = distance_travel(Home_lat, Current_lat, Home_lon, Current_lon) 
-                print("Current distance travel: ", Travel_distance)
-                logging.info("Distance traveled: %.2f meters" % Travel_distance) 
-                time.sleep(check_interval)                      
-            else:
-                print("Obstacle detected")
-                break
+        if( vx > 0 and dist_front > Safe_Dist ): 
+            print("Safe to travel Forward") 
+            logging.info("Safe to fly forward")          
+
+                 
+        elif(vx < 0 and dist_front < Safe_Dist):
+            print("Obstacle detected")
+            print("Flying Backward") 
+            logging.info("Flying Backward")  
+
+        elif(vx < 0 and dist_front > Safe_Dist):
+            print("Obstacle Clear")            
+            logging.info("Obstacle Clear")  
+            break
+        else:
+            print("Obstacle detected") 
+            logging.info("Obstacle detected")  
+            break       
+
+        Current_lat, Current_lon, Current_alt = get_location(master) 
+        Travel_distance = distance_travel(Home_lat, Current_lat, Home_lon, Current_lon)
+        print("Current distance travel: ", Travel_distance)
+        logging.info("Distance traveled: %.2f meters" % Travel_distance)     
+
+        time.sleep(check_interval)            
         
                 
-    else: 
-                      
-        while Travel_distance <= Target_distance:
-            dist_front = get_distance()
-            if( dist_front < Safe_Dist ): 
-                print("Flying Backward") 
-                logging.info("Flying Backward")               
-                Current_lat, Current_lon, Current_alt = get_location(master) 
-                Travel_distance = distance_travel(Home_lat, Current_lat, Home_lon, Current_lon)
-                print("Current distance travel: ", Travel_distance)
-                logging.info("Distance traveled: %.2f meters" % Travel_distance)  
-                time.sleep(check_interval)                
-            else:       
-                print("No Obstacle Detected")         
-                break 
+   
     master.mav.send(mavutil.mavlink.MAVLink_set_position_target_local_ned_message(10, master.target_system,  
                                                                                  master.target_component, 
                                                                                  mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
                                                                                  int(0b110111000011 ), 
-                                                                                 0, 0, -ALT, 
-                                                                                 vx, vy , vz, 
+                                                                                 0, 0, 0, 
+                                                                                 0, 0 , 0, 
                                                                                  0, 0, 0, 
                                                                                  0, 0 
                                                                                 ))
@@ -79,10 +79,10 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
     
     
 
-def fly_to_postion(master, lat, lon, ALT):
+def fly_to_waypoint(master, lat, lon, ALT):
     master.mav.send(mavutil.mavlink.MAVLink_set_position_target_global_int_message(10, master.target_system,  
                                                                                  master.target_component, 
-                                                                                 mavutil.mavlink.MAV_FRAME_GLOBAL_INT,
+                                                                                 mavutil.mavlink.MAV_FRAME_GLOBAL_RELATIVE_ALT,
                                                                                  int(0b110111111000), 
                                                                                  int(lat*1e7), int(lon* 1e7), ALT, 
                                                                                  0, 0 , 0, 
