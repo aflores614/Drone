@@ -15,7 +15,7 @@ from land import land
 from fly_forward import fly_forward
 from check_pre_arm import check_pre_arm
 from lidar_distance import get_distance
-from set_movment import fly_movment, fly_to_waypoint
+from set_movment import fly_movment, fly_to_waypoint, fly_foward_meters
 from travel_distance import distance_travel
 from abort_mission import abort_mission
 from Safe_Test import saftey_test_1,  saftey_test_2
@@ -29,7 +29,7 @@ velocity_y = 0 # Right speed at 0.0 m/s
 velocity_z = 0 # Down speed at 0.0 m/s
 neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
-ALT = 2.5 # fix altitude
+ALT = 1.5 # fix altitude
 Safe_Dist = 0.75 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
@@ -75,14 +75,6 @@ if master:
         print("begin")
         #scan for any obstacle before flying forward
 
-        try:
-            saftey_test_1(master, Safe_Dist )                     
-        except KeyboardInterrupt: # Reset by pressing CTRL + C
-            logging.warning("Safty Test 1 fail")
-            print("Not safe abort mission")
-            print("Safty Test 1 fail")
-            abort_mission(master)   
-
 
         try:
             logging.info("Flying to Target Distance Test Start")
@@ -118,7 +110,12 @@ if master:
                     
 
             logging.info("Target distance of %.2f meters reached.", target_distance) 
-            print(f"Target distance of {target_distance} meters reached.")     
+            print(f"Target distance of {target_distance} meters reached.")    
+            print("Flying back home")
+            fly_to_waypoint(master, Home_lat, Home_lon, ALT)
+            Start_lat, Start_lon, Start_alt = get_location(master) 
+            print("Flying Foward pt2")
+            fly_foward_meters(master, velocity_x, velocity_y, velocity_z, current_distance, target_distance, Start_lat, Start_lon ) 
                     
         except KeyboardInterrupt:            
             land(master)     
