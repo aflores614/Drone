@@ -28,14 +28,16 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
 
     while Travel_distance <= Target_distance:
         print("waiting for distance")
-        dist_front = get_distance()                
+        dist_front = 8                
         print("Front Distance", dist_front)
         logging.info("Front Distance: %.2f meters" %dist_front)       
 
                 
         if( vx > 0 and dist_front > Safe_Dist ): 
             print("Safe to travel Forward") 
-            logging.info("Safe to fly forward")          
+            logging.info("Safe to fly forward") 
+            time.sleep(2)
+            break         
 
                  
         elif(vx < 0 and dist_front < Safe_Dist):

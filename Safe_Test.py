@@ -5,7 +5,7 @@ from lidar_distance import get_distance
 from abort_mission import abort_mission
 from travel_distance import distance_travel
 from get_location import get_location
-from set_movment import fly_to_postion
+from set_movment import fly_to_waypoint
 
 def saftey_test_1(master, Safe_Dist):
     print("Stafey Test 1")
@@ -38,7 +38,7 @@ def saftey_test_2(master, Home_lat, Home_lon, Alt):
     print("It had travel", distance_travel_home ,"meters")  
     logging.info("It had traveled {} meters".format(distance_travel_home))
     if( distance_travel_home < 1.5):
-        #fly_to_postion(master, Home_lat, Home_lon, current_alt)
+        #fly_to_waypoint(master, Home_lat, Home_lon, current_alt)
         print("Safe Range")
     else:
         print("not safe to fight to home position")

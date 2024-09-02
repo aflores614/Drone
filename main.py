@@ -29,7 +29,7 @@ velocity_y = 0 # Right speed at 0.0 m/s
 velocity_z = 0 # Down speed at 0.0 m/s
 neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
-ALT = 1.1 # fix altitude
+ALT = 2.5 # fix altitude
 Safe_Dist = 0.75 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
@@ -94,7 +94,7 @@ if master:
             logging.info("Start Position: %f, %f, %f" % (Start_lat, Start_lon, Start_alt))
 
             while current_distance < target_distance:
-                dist_front = get_distance()
+                dist_front = 8
                 logging.info("Sensor readings - Front: %.2f",dist_front)
                 print("Distance front: ",dist_front)
                 if( dist_front is None ):
