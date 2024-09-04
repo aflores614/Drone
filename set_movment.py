@@ -20,7 +20,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
                                                                                  master.target_component, 
                                                                                  mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
                                                                                  int(0b110111000000), 
-                                                                                 0, 0, 0, 
+                                                                                 Target_distance, 0, -0.1, 
                                                                                  vx, vy , vz, 
                                                                                  0, 0, 0, 
                                                                                  0, 0 
@@ -66,7 +66,7 @@ def fly_foward_meters(master, vx, vy, vz, Travel_distance, Target_distance, Home
                                                                                  master.target_component, 
                                                                                  mavutil.mavlink.MAV_FRAME_BODY_OFFSET_NED,
                                                                                  int(0b110111000000), 
-                                                                                 Target_distance, 0, 0, 
+                                                                                 Target_distance, 0, 1.5, 
                                                                                  vx, vy , vz, 
                                                                                  0, 0, 0, 
                                                                                  0, 0 
@@ -97,7 +97,7 @@ def fly_to_waypoint(master, lat, lon, ALT):
                                                                                  0, 0, 0, 
                                                                                  0, 0 
                                                                                 ))
-    tolerance=0.00001 # how close the drone needs to get to the target position before the loop breaks
+    tolerance=0.1 # how close the drone needs to get to the target position before the loop breaks
     while True:
         current_lat, current_lon, current_alt = get_location(master)
         if(abs(abs(lat) - abs(current_alt)) < tolerance and

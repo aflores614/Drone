@@ -12,7 +12,7 @@ def get_location(master):
     )
     while True:
         
-        msg = master.recv_match(type = 'GPS_RAW_INT', blocking = True, timeout = 1)              
+        msg = master.recv_match(type = 'GPS_RAW_INT', blocking = True, timeout = 2)              
         if msg is not None:
             lat = msg.lat/1e7
             lon = msg.lon/1e7
