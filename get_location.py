@@ -1,5 +1,6 @@
 from pymavlink import mavutil
 import time
+from connect_to_vehicle import connect_to_vehicle
 
 def get_location(master):    
     master.mav.command_long_send(
@@ -22,4 +23,10 @@ def get_location(master):
             break
         else:
              print("Waiting ...")
-         
+if __name__ == "__main__":
+    
+      master = connect_to_vehicle()
+      while True:
+        lat,lon,alt = get_location(master)    
+        print(lat,lon,alt)   
+        time.sleep(2)

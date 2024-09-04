@@ -1,7 +1,7 @@
 from pymavlink import mavutil
 import time
 import logging
-from lidar_distance import get_distance
+
 from abort_mission import abort_mission
 from travel_distance import distance_travel
 from get_location import get_location
@@ -10,7 +10,7 @@ from set_movment import fly_to_waypoint
 def saftey_test_1(master, Safe_Dist):
     print("Stafey Test 1")
     while True:
-        dist_front = get_distance()
+        dist_front = 8
         logging.info("Sensor readings - Front: %.2f",
                             dist_front)
         

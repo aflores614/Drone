@@ -1,7 +1,7 @@
 import RPi.GPIO as GPIO
 import time
 import threading
-from lidar_distance import get_distance
+#from lidar_distance import get_distance
 
 # Set GPIO numbering mode
 GPIO.setmode(GPIO.BCM)
