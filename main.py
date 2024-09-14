@@ -21,14 +21,14 @@ from Safe_Test import saftey_test_1,  saftey_test_2
 from Battery_Info import Battery_Volatage
 from motor_servo import  lidar_motor
 
-target_distance = 6 # distance in meters
+target_distance = 7 # distance in meters
 current_distance = 0 # The distance the drone has traveled so far
 velocity_x = 0.5 # forward speed at 1 m/s
 velocity_y = 0 # Right speed at 0.0 m/s
 velocity_z = 0 # Down speed at 0.0 m/s
 neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
-ALT = 1.5 # fix altitude
+ALT = 2.5 # fix altitude
 Safe_Dist = 0.75 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
@@ -75,7 +75,9 @@ if master:
             while current_distance < target_distance:            
                     print("Flying Forward")
                     logging.info("fly_movment called with vx=%.2f, vy=%.2f, vz=%.2f, ALT=%.2f", velocity_x, velocity_y, velocity_z, ALT)
-                    current_distance = fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance,Start_lat, Start_lon  ) 
+                    fly_movment(master, velocity_x, velocity_y, velocity_z, ALT, Safe_Dist, current_distance, target_distance,Start_lat, Start_lon  ) 
+                    Current_lat, Current_lon, Current_alt = get_location(master) 
+                    current_distance = distance_travel(Home_lat, Current_lat, Home_lon, Current_lon)
                     print("Distance Travel: ", current_distance)           
                     
 

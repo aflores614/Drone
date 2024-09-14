@@ -35,7 +35,7 @@ def fly_movment(master, vx, vy, vz, ALT, Safe_Dist, Travel_distance, Target_dist
             print("Current distance travel: ", Travel_distance)
             logging.info("Distance traveled: %.2f meters" % Travel_distance) 
             time.sleep(check_interval)            
-    return Travel_distance
+    #return Travel_distance
 
 def fly_foward_meters(master, vx, vy, vz, Travel_distance, Target_distance, Home_lat, Home_lon ):
    

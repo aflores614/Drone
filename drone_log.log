@@ -1,2 +1,14 @@
-2024-09-03 20:32:53,416 - INFO - Start
-2024-09-03 20:32:55,348 - INFO - Home Position: 34.199802, -118.525507, 224.980000
+2024-09-13 17:57:48,404 - INFO - Start
+2024-09-13 17:57:49,243 - INFO - Home Position: 34.199937, -118.525624, 228.220000
+2024-09-13 17:57:50,247 - INFO - Drone is Armed
+2024-09-13 17:58:03,279 - INFO - Flying to Target Distance Test Start
+2024-09-13 17:58:03,282 - INFO - Start Position: 34.199932, -118.525628, 230.790000
+2024-09-13 17:58:03,283 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=2.50
+2024-09-13 17:58:04,156 - INFO - fly_movment called with vx=0.50, vy=0.00, vz=0.00, ALT=2.50
+2024-09-13 17:58:10,154 - INFO - Target distance of 7.00 meters reached.
+2024-09-13 17:58:11,168 - INFO - Enroute to target Position
+2024-09-13 17:58:12,161 - INFO - Enroute to target Position
+2024-09-13 17:58:13,162 - INFO - Enroute to target Position
+2024-09-13 17:58:14,156 - INFO - Reach Target Position
+2024-09-13 17:58:26,204 - INFO - Land Position: 34.199927, -118.525626, 228.970000
+2024-09-13 17:58:26,205 - INFO - Total Distance Travel (GPS) : 1.210000
