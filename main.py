@@ -14,7 +14,7 @@ from return_home import return_home
 from land import land
 from fly_forward import fly_forward
 from check_pre_arm import check_pre_arm
-from set_movment import fly_movment, fly_to_waypoint, fly_foward_meters
+from set_movment import fly_movment, fly_to_waypoint, fly_circle
 from travel_distance import distance_travel
 from abort_mission import abort_mission
 from Safe_Test import saftey_test_1,  saftey_test_2
@@ -67,7 +67,7 @@ if master:
             logging.info("Flying to Target Distance Test Start")
             print("Flying to Target Distance \nTest Start")
 
-
+            fly_circle(master, 2, 0) #fly in a circle of radius of 2 meters clock wise
             Start_lat, Start_lon, Start_alt = get_location(master) 
             print("Start postion is set:")
             logging.info("Start Position: %f, %f, %f" % (Start_lat, Start_lon, Start_alt))
