@@ -130,6 +130,7 @@ def fly_circle(master,radius,dir):
     waypoints_lat = []
     waypoints_lon = []
     angle = 0
+    print("hello")
     for i in range(num_waypoint + 1):
         lat, lon = get_waypoint(master, radius, angle)
         waypoints_lat.append(lat)

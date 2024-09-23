@@ -12,7 +12,7 @@ from disarm_drone import disarm_drone
 from set_mode import set_mode 
 from return_home import return_home
 from land import land
-from fly_forward import fly_forward
+from fly_forward import get_waypoint
 from check_pre_arm import check_pre_arm
 from set_movment import fly_movment, fly_to_waypoint, fly_circle
 from travel_distance import distance_travel
@@ -21,14 +21,14 @@ from Safe_Test import saftey_test_1,  saftey_test_2
 from Battery_Info import Battery_Volatage
 from motor_servo import  lidar_motor
 
-target_distance = 7 # distance in meters
+target_distance = 4 # distance in meters
 current_distance = 0 # The distance the drone has traveled so far
 velocity_x = 0.5 # forward speed at 1 m/s
 velocity_y = 0 # Right speed at 0.0 m/s
 velocity_z = 0 # Down speed at 0.0 m/s
 neg_velocity_x = -velocity_x # backward speed at 0.5 m/s
 check_interval = 0.5 # The time interval between each check of the distance
-ALT = 2.5 # fix altitude
+ALT = 2.0 # fix altitude
 Safe_Dist = 0.75 # safe distance
 
 logging.basicConfig(filename='drone_log.log', 
@@ -64,10 +64,12 @@ if master:
         
         takeoff(master, ALT, 2)  #takeoff to fix alitiude and hold for fix time
         try:
+            print("Fly in a circle Test")
+            fly_circle(master, 1.5, 1) #fly in a circle of 1 meter counterclock wise
             logging.info("Flying to Target Distance Test Start")
             print("Flying to Target Distance \nTest Start")
 
-            fly_circle(master, 2, 0) #fly in a circle of radius of 2 meters clock wise
+            #fly_circle(master, 2, 0) #fly in a circle of radius of 2 meters clock wise
             Start_lat, Start_lon, Start_alt = get_location(master) 
             print("Start postion is set:")
             logging.info("Start Position: %f, %f, %f" % (Start_lat, Start_lon, Start_alt))
